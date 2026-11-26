@@ -293,7 +293,7 @@
       white-space: nowrap;
     }
     ul.nav-menu > li > a:hover { color: var(--gold-primary); background: var(--emerald-soft); transform: translateY(-1px); }
-    
+
     ul.nav-menu > li > a.active-menu-item {
       background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-mid)) !important;
       color: #f5dc93 !important;
@@ -789,7 +789,7 @@
       padding: 3px 10px; border-radius: 6px; display: inline-block; margin-bottom: 4px;
     }
     .dana-number { font-size: 1.35rem; font-weight: 800; color: #0f172a; letter-spacing: 0.8px; font-family: monospace; }
-    
+
     .btn-action-primary {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--emerald-deep); color: #f5dc93 !important;
@@ -797,7 +797,7 @@
       font-size: 0.86rem; border: none; cursor: pointer; transition: 0.2s;
     }
     .btn-action-primary:hover { background: var(--emerald-mid); transform: translateY(-1px); }
-    
+
     .btn-copy {
       background: var(--emerald-mid); color: #fff; padding: 8px 14px; border-radius: 8px;
       font-weight: 700; font-size: 0.82rem; border: none; cursor: pointer;
@@ -922,7 +922,7 @@
       color: var(--emerald-deep); line-height: 1.25; margin-bottom: 6px;
     }
     .blogger-post-meta { font-size: 0.76rem; color: var(--ink-muted); margin-bottom: 8px; }
-    .blogger-post-excerpt { font-size: 0.85rem; color: var(--ink-dark); margin-bottom: 12px; line-height: 1.55; }
+    .blogger-post-excerpt { font-size: 0.85rem; color: var(--ink-dark); margin-bottom: 12px; line-height: 1.6; text-align: left; }
     .blogger-post-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto; }
     .blogger-admin-only { display: none !important; }
     body.blogger-admin-unlocked .blogger-admin-only { display: inline-flex !important; }
@@ -975,7 +975,7 @@
 </head>
 <body>
 
-  <!-- 1. BILAH ATAS (PORTAL PEGAWAI & PORTAL SANTRI — TIDAK DISENTUH) -->
+  <!-- 1. BILAH ATAS (PORTAL PEGAWAI & PORTAL SANTRI) -->
   <div class="top-bar">
     <div class="top-bar-inner">
       <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px;">
@@ -1065,7 +1065,7 @@
         <div class="kop-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
         <h1>YAYASAN DARUL MUTTAQIEN</h1>
         <div class="kop-wilayah">DESA TALANG PANGERAN KECAMATAN TELUK GELAM KABUPATEN OGAN KOMERING ILIR SUMSEL</div>
-        <div class="kop-alamat">📍 Jl. Mesjid No. 110 Dusun II Desa Talang Pangeran, Kode Pos 30673 &nbsp;|&nbsp; 📞 No. HP: 0853-8227-9767</div>
+        <div class="kop-alamat">📍 Jl. Mesjid No. 110 Dusun II Desa Talang Pangeran, Kode Pos 30673  |  📞 No. HP: 0853-8227-9767</div>
         <div class="kop-akte">Akte Notaris Emmy Natalia, S.H, Nomor : 21 Tanggal 16 Februari 2021</div>
       </div>
     </div>
@@ -1102,18 +1102,18 @@
     <div class="viewer-panel" id="panel-blogger-cepat" style="margin-bottom: 24px; border-left-color: var(--gold-primary);">
       <div class="blogger-toolbar-strip" style="margin-bottom: 10px;">
         <div>
-          <span class="viewer-tag" style="margin-bottom: 4px;">&#128214; Mimbar Literasi, Kajian &amp; Khutbah Yayasan</span>
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--emerald-deep); margin: 0;">Papan Postingan &amp; Khazanah Dakwah Darul Muttaqien</h3>
+          <span class="viewer-tag" style="margin-bottom: 4px;">📖 Mimbar Literasi, Kajian & Khutbah Yayasan</span>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; color: var(--emerald-deep); margin: 0;">Papan Postingan & Khazanah Dakwah Darul Muttaqien</h3>
           <div id="statusCloudBlogYayasan" style="font-size:0.74rem; font-weight:700; color:#0369a1; margin-top:3px;">☁️ Menghubungkan Database Blog Yayasan...</div>
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
           <a href="https://pustaka.darulmuttaqien.my.id/" target="_blank" rel="noopener noreferrer" class="btn-smooth" style="text-decoration:none;">📚 Pustaka Yayasan ↗</a>
-          <button type="button" class="btn-smooth" id="btnBukaModeAdminBlog" onclick="bukaModalPinBlog()" title="Khusus Pengurus / Admin Blog">&#128274; Mode Admin Blog</button>
-          <button type="button" class="btn-action-primary blogger-admin-only" onclick="bukaEditorBlogger()">&#9999;&#65039; Tulis / Tempel Postingan</button>
+          <button type="button" class="btn-smooth" id="btnBukaModeAdminBlog" onclick="bukaModalPinBlog()" title="Khusus Pengurus / Admin Blog">🔒 Mode Admin Blog</button>
+          <button type="button" class="btn-action-primary blogger-admin-only" onclick="bukaEditorBlogger()">✏️ Tulis / Tempel Postingan</button>
           <button type="button" class="btn-smooth blogger-admin-only" onclick="sinkronBlogDariCloud(true)">🔄 Sinkron Sheets Blog</button>
-          <button type="button" class="btn-copy blogger-admin-only" onclick="eksporDataBloggerJson()">&#128190; Cadangkan (.json)</button>
-          <button type="button" class="btn-smooth blogger-admin-only" onclick="document.getElementById('inputImportBloggerJson').click()">&#128194; Impor (.json)</button>
-          <button type="button" class="btn-smooth blogger-admin-only" style="background:#fee2e2; color:#991b1b;" onclick="kunciModeAdminBlog()">&#128272; Kunci Admin</button>
+          <button type="button" class="btn-copy blogger-admin-only" onclick="eksporDataBloggerJson()">💾 Cadangkan (.json)</button>
+          <button type="button" class="btn-smooth blogger-admin-only" onclick="document.getElementById('inputImportBloggerJson').click()">📂 Impor (.json)</button>
+          <button type="button" class="btn-smooth blogger-admin-only" style="background:#fee2e2; color:#991b1b;" onclick="kunciModeAdminBlog()">🔐 Kunci Admin</button>
           <input type="file" id="inputImportBloggerJson" accept=".json,application/json" style="display:none;" onchange="imporDataBloggerJson(event)" />
         </div>
       </div>
@@ -1217,7 +1217,8 @@
     </div>
 
   </div>
-<script>
+
+  <script>
     var NO_REK_BRI = "003001013416538";
     var NO_REK_BSI = "7185368879";
     var NO_DANA = "6282282088679";
@@ -1225,11 +1226,11 @@
     // PENGHUBUNG RESMI KE PUSTAKA YAYASAN
     var PUSTAKA_YAYASAN_URL = "https://pustaka.darulmuttaqien.my.id/";
 
-    // ENDPOINT DATABASE KHUSUS BLOG YAYASAN (TERPISAH DARI SIM MDTA PEGAWAI & SANTRI)
+    // ENDPOINT DATABASE KHUSUS BLOG YAYASAN
     var BLOG_YAYASAN_ENDPOINT = "https://script.google.com/macros/s/AKfycby9rKplYzTW8M4a3kwnRm8JDnGKOOlGGF3a9mFyMoLliVAFjGhdnEfqAJ8XJVelogKW/exec";
     var PIN_ADMIN_BLOG = "2828";
 
-    // DATA PORTAL SANTRI & ALUMNI (DIKUNCI UTUH — TIDAK DISENTUH)
+    // DATA PORTAL SANTRI & ALUMNI
     var DATA_SANTRI_SIM = [
       { nis: "2025001", nama: "Muhammad Al-Fatih", ttl: "OKI, 2015-03-12", kelas: "2 MDTA", kelompok: "Kelompok A", ortu: "Hendra Wijaya / Siti Aminah", alamat: "Jl. Mesjid Talang Pangeran RT 01" },
       { nis: "2026002", nama: "Aisyah Humaira Putri", ttl: "Palembang, 2016-07-19", kelas: "1 MDTA", kelompok: "Kelompok A", ortu: "Rahmat Hidayat / Nurhayati", alamat: "Dusun I Talang Pangeran" },
@@ -1250,7 +1251,7 @@
       { nama: "Siti Rahmawati", tahun: "2023", kelompok: "Kelompok B", lanjut: "SMPN 1 Teluk Gelam" }
     ];
 
-    // KUMPULAN KHUTBAH JUMAT (DIPERBARUI & DIPERKAYA)
+    // KUMPULAN KHUTBAH JUMAT (PARAGRAF UTUH)
     var DATA_KHUTBAH = {
       khutbah_1: {
         judul: "Khutbah Jumat: Menjaga Lisan dan Menunaikan Amanah dalam Kehidupan",
@@ -1258,10 +1259,10 @@
         salamArab: "اَلْحَمْدُ لِلّٰهِ الَّذِيْ أَمَرَنَا بِالصِّدْقِ وَالْأَمَانَةِ، وَنَهَانَا عَنِ الْكَذِبِ وَالْخِيَانَةِ. أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيْكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُوْلُهُ.",
         dalilArab: "يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا ﴿٧٠﴾ يُصْلِحْ لَكُمْ أَعْمَالَكُمْ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ",
         isiParagraf: [
-          "Ma'asyiral Muslimin rahimakumullah, marilah kita senantiasa meningkatkan kualitas ketakwaan kepada Allah SWT dengan menghadirkan rasa diawasi oleh-Nya dalam setiap langkah, ucapan, maupun keputusan yang kita ambil.",
-          "Salah satu cerminan utama kesempurnaan iman seorang mukmin adalah kemampuannya menjaga lisan dari perkataan dusta, ghibah, adu domba, serta kalimat yang melukai hati sesama. Lisan yang terjaga akan melahirkan keteduhan dalam rumah tangga dan kerukunan di tengah masyarakat.",
+          "Ma'asyiral Muslimin rahimakumullah, marilah kita senantiasa meningkatkan kualitas ketakwaan kepada Allah SWT dengan menghadirkan rasa diawasi oleh-Nya dalam setiap langkah, ucapan, maupun keputusan yang kita ambil sehari-hari.",
+          "Salah satu cerminan utama kesempurnaan iman seorang mukmin adalah kemampuannya menjaga lisan dari perkataan dusta, ghibah, adu domba, serta kalimat yang melukai hati sesama. Lisan yang terjaga akan melahirkan keteduhan dalam rumah tangga dan kerukunan yang hangat di tengah masyarakat.",
           "Rasulullah ﷺ mengingatkan bahwa keselamatan seorang hamba di dunia dan akhirat sangat bergantung pada bagaimana ia mengendalikan lisannya. Setiap kata yang terucap dicatat oleh malaikat dan kelak akan dimintai pertanggungjawaban di hadapan Allah SWT.",
-          "Bersamaan dengan menjaga lisan, menunaikan amanah dalam nafkah keluarga, pekerjaan, serta mendidik putra-putri kita dengan ilmu agama merupakan tiang kokoh yang mengundang turunnya keberkahan dari langit dan bumi."
+          "Bersamaan dengan menjaga lisan, menunaikan amanah dalam nafkah keluarga, tanggung jawab kerja, serta mendidik putra-putri kita dengan ilmu agama merupakan tiang kokoh yang mengundang turunnya keberkahan dari langit dan bumi."
         ],
         doaArab: "اَللّٰهُمَّ اغْفِرْ لِلْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ وَالْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ، اَلْأَحْيَاءِ مِنْهُمْ وَالْأَمْوَاتِ، رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ."
       },
@@ -1496,7 +1497,7 @@
                 <div class="mag-header">
                   <div>
                     <span class="mag-rubrik">Rubrik Ushuluddin & Tauhid • Khazanah Darul Muttaqien</span>
-                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Aqidatul Awam</strong> &amp; <strong>Jauharut Tauhid</strong></div>
+                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Aqidatul Awam</strong> & <strong>Jauharut Tauhid</strong></div>
                   </div>
                   <span class="mag-edition">Edisi Majalah MDTA</span>
                 </div>
@@ -1525,7 +1526,7 @@
                 <div class="mag-header">
                   <div>
                     <span class="mag-rubrik">Rubrik Fikih & Syariah • Khazanah Darul Muttaqien</span>
-                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Safinatun Najah</strong> &amp; <strong>Fathul Qarib</strong></div>
+                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Safinatun Najah</strong> & <strong>Fathul Qarib</strong></div>
                   </div>
                   <span class="mag-edition">Edisi Majalah MDTA</span>
                 </div>
@@ -1554,7 +1555,7 @@
                 <div class="mag-header">
                   <div>
                     <span class="mag-rubrik">Rubrik Tazkiyatun Nafs • Khazanah Darul Muttaqien</span>
-                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Ta'limul Muta'allim</strong> &amp; <strong>Al-Washaya</strong></div>
+                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Ta'limul Muta'allim</strong> & <strong>Al-Washaya</strong></div>
                   </div>
                   <span class="mag-edition">Edisi Majalah MDTA</span>
                 </div>
@@ -1642,7 +1643,6 @@
         isi: ''
       },
 
-      // PORTAL SANTRI (RAPORT ONLINE & BAYAR SPP — DIKUNCI UTUH)
       raport_online: {
         tag: "📊 Portal Santri — Raport Digital / Online (Terhubung Sistem Raport MDTA)",
         judul: "Cek & Cetak Raport Online Santri MDTA Darul Muttaqien",
@@ -1743,7 +1743,6 @@
               </div>`
       },
 
-      // PORTAL SANTRI (SANTRI AKTIF & ALUMNI — DIKUNCI UTUH)
       santri_aktif: {
         tag: "🧑‍🎓 Portal Santri — Data Santri Aktif (Import Portal Pegawai SIM MDTA)",
         judul: "Direktori Santri Aktif MDTA Darul Muttaqien",
@@ -1836,7 +1835,8 @@
               </ul>`
       }
     };
-function renderKontenKhutbah(idKhutbah) {
+
+    function renderKontenKhutbah(idKhutbah) {
       var k = DATA_KHUTBAH[idKhutbah];
       if (!k) return '';
       var keys = Object.keys(DATA_KHUTBAH);
@@ -1977,7 +1977,8 @@ function renderKontenKhutbah(idKhutbah) {
         catatanDefault: ""
       }
     ];
-function renderGaleriFoto() {
+
+    function renderGaleriFoto() {
       var container = document.getElementById('galleryCardsContainer');
       if (!container) return;
       container.innerHTML = DATA_GALERI_FOTO.map(function(item) {
@@ -2019,7 +2020,7 @@ function renderGaleriFoto() {
       if (st) st.textContent = '✓ Tersimpan otomatis';
     }
 
-    // FUNGSI PORTAL SANTRI & ALUMNI (DIKUNCI UTUH — TIDAK DISENTUH)
+    // FUNGSI PORTAL SANTRI & ALUMNI
     function filterTabelSantri() {
       var tbody = document.getElementById('tbodySantriAktif');
       if (!tbody) return;
@@ -2263,7 +2264,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
       window.open(waUrl + '?text=' + text, '_blank');
     }
 
-    // SINKRONISASI RAPORT & SIM PEGAWAI (DIKUNCI UTUH — TIDAK DISENTUH)
+    // SINKRONISASI RAPORT & SIM PEGAWAI
     var RAPORT_STORAGE_KEY = 'darul_muttaqien_raport_v1';
     var MAPEL_LABEL_RAPORT = [
       { kode: 'quran', nama: "Al-Qur'an" },
@@ -2490,7 +2491,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
       window.location.href = 'sistem_raport_digital_mdta-v9.html';
     }
 
-    // ENGINE POSTINGAN GAYA BLOGGER YAYASAN (DIPERBARUI KONTEN HARDCODED-NYA)
+    // ENGINE POSTINGAN GAYA BLOGGER YAYASAN
     var BLOGGER_STORAGE_KEY = 'ydm_blogger_posts_v2';
     var BLOGGER_ADMIN_SESSION_KEY = 'ydm_blogger_admin_unlocked';
     var BLOGGER_ACTIVE_LABEL = 'Semua';
@@ -2516,7 +2517,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
         tanggal: '2026-11-18',
         arab: 'فَأَوَّلُ وَاجِبٍ عَلَى الْعِبَادِ ۞ مَعْرِفَةُ الْإِلٰهِ بِاسْتِقْصَاءِ',
         lampiran: '',
-        isi: 'Pembahasan kajian rutin kitab Aqidatul Awam yang menyoroti pentingnya mengenal sifat-sifat kesempurnaan Allah SWT sebagai landasan ketenangan batin, sikap tawakal, syukur, dan keistiqamahan dalam beribadah.'
+        isi: 'Pembahasan kajian rutin kitab Aqidatul Awam yang menyoroti pentingnya mengenal sifat-sifat kesempurnaan Allah SWT sebagai landasan ketenangan batin, sikap tawakal, syukur, dan keistiqamahan dalam beribadah di tengah dinamika kehidupan sehari-hari.'
       },
       {
         id: 'post-artikel-adab',
@@ -2527,9 +2528,30 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
         tanggal: '2026-11-15',
         arab: 'تَعَلَّمُوا الْعِلْمَ وَتَعَلَّمُوا لِلْعِلْمِ السَّكِينَةَ وَالْوَقَارَ',
         lampiran: '',
-        isi: 'Keberkahan ilmu sering kali hadir melalui keluhuran adab yang terjaga di majelis ilmu: meluruskan niat ikhlas karena Allah, datang tepat waktu, menyimak penjelasan guru dengan penuh takzim, serta menjaga kebersihan kitab pelajaran.'
+        isi: 'Keberkahan ilmu sering kali hadir melalui keluhuran adab yang terjaga di majelis ilmu: meluruskan niat ikhlas karena Allah, datang tepat waktu, menyimak penjelasan guru dengan penuh takzim, serta menjaga kebersihan kitab pelajaran agar ilmu menjadi cahaya yang bermanfaat.'
       }
     ];
+
+    // Mengubah teks berformat poin/daftar menjadi paragraf mengalir yang utuh
+    function jadikanParagrafUtuh(teksMentah) {
+      var bersih = String(teksMentah || '').replace(/\r\n/g, '\n').trim();
+      if (!bersih) return '';
+      var potongan = bersih
+        .split(/\n+|;\s*/)
+        .map(function(bagian) {
+          return bagian.replace(/^\s*(?:\d+[.)]|[-•*])\s*/, '').trim();
+        })
+        .filter(Boolean);
+
+      if (potongan.length <= 1) {
+        return potongan[0] || bersih;
+      }
+
+      var kalimat = potongan.map(function(item) {
+        return /[.!?…]$/.test(item) ? item : (item + '.');
+      });
+      return kalimat.join(' ');
+    }
 
     function kirimKeBlogEndpoint(payload, onDone) {
       if (!BLOG_YAYASAN_ENDPOINT) {
@@ -2565,8 +2587,10 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
         var khatib = String(row.Khatib || 'Dewan Asatidz Yayasan Darul Muttaqien');
         var dalil = String(row.Dalil_Utama || '');
         var poinRaw = String(row.Poin_Utama || '');
-        var paragrafArr = poinRaw.split(/\n+|;\s*/).map(function(s) { return s.trim(); }).filter(Boolean);
-        if (paragrafArr.length === 0) paragrafArr = ['Naskah khutbah tersedia pada arsip Yayasan Darul Muttaqien.'];
+        var paragrafUtuh = jadikanParagrafUtuh(poinRaw);
+        var paragrafArr = paragrafUtuh
+          ? paragrafUtuh.split(/\n\s*\n/).map(function(s) { return s.trim(); }).filter(Boolean)
+          : ['Naskah khutbah tersedia pada arsip Yayasan Darul Muttaqien.'];
         objekBaru[key] = {
           judul: judul,
           khatib: khatib,
@@ -2623,10 +2647,12 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
             tanggal: String(row.Tanggal || ''),
             arab: String(row.Dalil_Utama || ''),
             lampiran: String(row.Link_Naskah || ''),
-            isi: String(row.Poin_Utama || '')
+            isi: jadikanParagrafUtuh(String(row.Poin_Utama || ''))
           });
         });
         (res.kajian || []).forEach(function(row, idx) {
+          var ringkasParagraf = jadikanParagrafUtuh(String(row.Ringkasan || ''));
+          var waktuTempat = row.Waktu_Tempat ? (' Pelaksanaan kajian berlangsung pada ' + String(row.Waktu_Tempat).trim() + '.') : '';
           hasilCloud.push({
             id: String(row.ID || ('kaj-cld-' + idx)),
             sheetName: 'Kajian',
@@ -2636,7 +2662,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
             tanggal: String(row.Tanggal || ''),
             arab: '',
             lampiran: String(row.Link_Materi || row.Link_Video || ''),
-            isi: String(row.Ringkasan || '') + (row.Waktu_Tempat ? ('\n\nWaktu & Tempat: ' + row.Waktu_Tempat) : '')
+            isi: (ringkasParagraf + waktuTempat).trim()
           });
         });
         (res.berita || []).forEach(function(row, idx) {
@@ -2650,7 +2676,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
             tanggal: String(row.Tanggal || ''),
             arab: '',
             lampiran: String(row.Link_Dokumen || row.Link_Gambar || ''),
-            isi: String(row.Isi_Lengkap || row.Ringkasan || '')
+            isi: jadikanParagrafUtuh(String(row.Isi_Lengkap || row.Ringkasan || ''))
           });
         });
         if (hasilCloud.length > 0) {
@@ -2741,7 +2767,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
       try { localStorage.setItem(BLOGGER_STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
     }
     function escapeHtmlBlogger(str) {
-      return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      return String(str || '').replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '"');
     }
 
     function aktifkanLinkOtomatis(htmlTeks) {
@@ -2764,7 +2790,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
     }
 
     function formatParagrafBlogger(teks) {
-      var bersih = String(teks || '').replace(/\r\n/g, '\n').trim();
+      var bersih = jadikanParagrafUtuh(teks);
       if (!bersih) return '<p><em>Belum ada isi tulisan.</em></p>';
       return bersih.split(/\n\s*\n/).map(function(b) {
         var trimmed = b.trim();
@@ -2791,21 +2817,21 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
         return;
       }
       grid.innerHTML = tersaring.map(function(post) {
-        var ringkasanPolos = String(post.isi || '').replace(/\n+/g, ' ').trim();
-        var cuplikan = ringkasanPolos.length > 135 ? ringkasanPolos.slice(0, 135) + '...' : ringkasanPolos;
+        var ringkasanPolos = jadikanParagrafUtuh(post.isi || '');
+        var cuplikan = ringkasanPolos.length > 155 ? ringkasanPolos.slice(0, 155).replace(/\s+\S*$/, '') + '...' : ringkasanPolos;
         var tabPustaka = (post.label || '').toLowerCase() === 'khutbah' ? 'khutbah' : ((post.label || '').toLowerCase() === 'kajian' ? 'kajian' : 'artikel');
         return `<div class="blogger-post-card">
           <div>
-            <span class="blogger-post-label">&#127991;&#65039; ${escapeHtmlBlogger(post.label || 'Artikel')}</span>
+            <span class="blogger-post-label">🏷️ ${escapeHtmlBlogger(post.label || 'Artikel')}</span>
             <div class="blogger-post-title">${escapeHtmlBlogger(post.judul)}</div>
-            <div class="blogger-post-meta">&#128467;&#65039; ${escapeHtmlBlogger(post.tanggal || '-')} &bull; &#9997;&#65039; ${escapeHtmlBlogger(post.penulis || 'Pengurus Yayasan')}</div>
-            <div class="blogger-post-excerpt">${escapeHtmlBlogger(cuplikan)}</div>
+            <div class="blogger-post-meta">🗓️ ${escapeHtmlBlogger(post.tanggal || '-')} • ✍️ ${escapeHtmlBlogger(post.penulis || 'Pengurus Yayasan')}</div>
+            <p class="blogger-post-excerpt">${escapeHtmlBlogger(cuplikan)}</p>
           </div>
           <div class="blogger-post-actions">
-            <button type="button" class="btn-smooth" onclick="bukaBacaBlogger('${escapeHtmlBlogger(post.id)}')">Baca Lengkap &rarr;</button>
+            <button type="button" class="btn-smooth" onclick="bukaBacaBlogger('${escapeHtmlBlogger(post.id)}')">Baca Lengkap →</button>
             <a href="${PUSTAKA_YAYASAN_URL}?tab=${tabPustaka}" target="_blank" rel="noopener noreferrer" class="btn-smooth" style="text-decoration:none; font-size:0.75rem;">Pustaka Yayasan ↗</a>
-            <button type="button" class="blogger-rich-btn blogger-admin-only" onclick="bukaEditorBlogger('${escapeHtmlBlogger(post.id)}')">&#9998; Edit</button>
-            <button type="button" class="blogger-rich-btn blogger-admin-only" style="color:#b91c1c;" onclick="hapusPostinganBlogger('${escapeHtmlBlogger(post.id)}')">&#128465; Hapus</button>
+            <button type="button" class="blogger-rich-btn blogger-admin-only" onclick="bukaEditorBlogger('${escapeHtmlBlogger(post.id)}')">✎ Edit</button>
+            <button type="button" class="blogger-rich-btn blogger-admin-only" style="color:#b91c1c;" onclick="hapusPostinganBlogger('${escapeHtmlBlogger(post.id)}')">🗑 Hapus</button>
           </div>
         </div>`;
       }).join('');
@@ -2852,14 +2878,14 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
     function sisipkanFormatBlogger(jenis) {
       var ta = document.getElementById('bloggerIsiInput');
       if (!ta) return;
-      var tambahan = jenis === 'subjudul' ? '\n\n### Subjudul Bagian\n' : (jenis === 'poin' ? '\n- Poin pertama\n- Poin kedua\n' : '\n\n> Kutipan hikmah atau ringkasan penting.\n');
+      var tambahan = jenis === 'subjudul' ? '\n\n### Subjudul Bagian\n' : (jenis === 'poin' ? '\n\nLanjutan pembahasan utama dalam majelis ini menekankan pentingnya ' : '\n\n> Kutipan hikmah atau ringkasan penting.\n');
       ta.value = (ta.value || '') + tambahan;
       ta.focus();
     }
     function bersihkanSpasiWordBlogger() {
       var ta = document.getElementById('bloggerIsiInput');
       if (!ta) return;
-      ta.value = String(ta.value || '').replace(/\u00A0/g, ' ').replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
+      ta.value = jadikanParagrafUtuh(ta.value);
     }
     function simpanPostinganBlogger() {
       if (!isAdminBlogTerbuka()) { alert('Akses ditolak. Silakan buka Mode Admin Blog terlebih dahulu.'); return; }
@@ -2872,7 +2898,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
       var arabInput = document.getElementById('bloggerArabInput');
       var isiInput = document.getElementById('bloggerIsiInput');
       var judul = jInput ? jInput.value.trim() : '';
-      var isi = isiInput ? isiInput.value.trim() : '';
+      var isi = isiInput ? jadikanParagrafUtuh(isiInput.value) : '';
       if (!judul || !isi) { alert('Silakan isi Judul Postingan dan Isi Tulisan terlebih dahulu.'); return; }
 
       var labelVal = lInput ? lInput.value : 'Artikel';
@@ -2951,9 +2977,12 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
         try {
           var parsed = JSON.parse(e.target.result);
           if (!Array.isArray(parsed)) throw new Error('Format harus berupa array postingan.');
-          simpanDaftarPostinganBlogger(parsed);
+          var dirapikan = parsed.map(function(item) {
+            return Object.assign({}, item, { isi: jadikanParagrafUtuh(item.isi || '') });
+          });
+          simpanDaftarPostinganBlogger(dirapikan);
           renderPostinganBlogger();
-          alert('Data postingan blog berhasil diimpor (' + parsed.length + ' postingan).');
+          alert('Data postingan blog berhasil diimpor (' + dirapikan.length + ' postingan).');
         } catch (err) { alert('Gagal mengimpor file JSON: ' + err.message); }
       };
       reader.readAsText(file);
@@ -2985,10 +3014,10 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
   <div id="modal-pin-admin-blog" onclick="if(event.target===this) tutupModalPinBlog()" style="display:none; position:fixed; inset:0; background:rgba(7,41,27,0.65); z-index:999; align-items:center; justify-content:center; padding:16px;">
     <div style="background:#ffffff; border-radius:16px; border-top:4px solid #c59b27; max-width:410px; width:100%; padding:22px 24px; box-shadow:0 20px 40px rgba(0,0,0,0.28); font-family:'Plus Jakarta Sans',sans-serif;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-        <h4 style="margin:0; font-size:1.1rem; font-weight:800; color:#0b3d28;">&#128272; Verifikasi PIN Admin Blog</h4>
-        <button type="button" onclick="tutupModalPinBlog()" style="background:none; border:none; font-size:1.2rem; font-weight:700; color:#64748b; cursor:pointer; padding:2px 6px;">&#10005;</button>
+        <h4 style="margin:0; font-size:1.1rem; font-weight:800; color:#0b3d28;">🔐 Verifikasi PIN Admin Blog</h4>
+        <button type="button" onclick="tutupModalPinBlog()" style="background:none; border:none; font-size:1.2rem; font-weight:700; color:#64748b; cursor:pointer; padding:2px 6px;">✕</button>
       </div>
-      <p style="font-size:0.83rem; color:#5a6660; margin-bottom:14px; line-height:1.5;">Masukkan PIN admin yayasan untuk membuka mode kelola postingan (Tulis, Edit, Hapus &amp; Impor).</p>
+      <p style="font-size:0.83rem; color:#5a6660; margin-bottom:14px; line-height:1.5;">Masukkan PIN admin yayasan untuk membuka mode kelola postingan (Tulis, Edit, Hapus & Impor).</p>
       <div style="margin-bottom:10px;">
         <label for="inputPinAdminBlog" style="display:block; font-size:0.8rem; font-weight:700; color:#0b3d28; margin-bottom:5px;">PIN Admin</label>
         <input type="password" id="inputPinAdminBlog" placeholder="Masukkan PIN admin..." onkeydown="if(event.key==='Enter'){ event.preventDefault(); verifikasiPinAdminBlog(); }" style="width:100%; padding:10px 12px; border:1.5px solid #cbd5e1; border-radius:9px; font-size:0.95rem; font-weight:700; letter-spacing:2px; outline:none;" />
@@ -2996,7 +3025,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
       <div id="pesanErrorPinAdminBlog" style="display:none; font-size:0.78rem; color:#b91c1c; background:#fef2f2; border:1px solid #fecaca; padding:7px 10px; border-radius:8px; margin-bottom:12px; font-weight:600;"></div>
       <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
         <button type="button" onclick="tutupModalPinBlog()" style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:8px 14px; border-radius:8px; font-size:0.82rem; font-weight:700; cursor:pointer;">Batal</button>
-        <button type="button" onclick="verifikasiPinAdminBlog()" style="background:#0b3d28; color:#f5dc93; border:none; padding:8px 16px; border-radius:8px; font-size:0.82rem; font-weight:700; cursor:pointer;">Buka Mode Admin &#8599;</button>
+        <button type="button" onclick="verifikasiPinAdminBlog()" style="background:#0b3d28; color:#f5dc93; border:none; padding:8px 16px; border-radius:8px; font-size:0.82rem; font-weight:700; cursor:pointer;">Buka Mode Admin ↗</button>
       </div>
     </div>
   </div>
@@ -3006,16 +3035,16 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
     <div class="blogger-editor-card">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #e5e7eb; padding-bottom:10px;">
         <div>
-          <h3 id="judulModalBlogger" style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--emerald-deep); margin:0;">&#9999;&#65039; Tulis Postingan Baru (Gaya Blogger)</h3>
+          <h3 id="judulModalBlogger" style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--emerald-deep); margin:0;">✏️ Tulis Postingan Baru (Gaya Blogger)</h3>
           <div style="font-size:0.78rem; color:var(--ink-muted);">Tersimpan ke database khusus blog yayasan serta terhubung ke Pustaka Yayasan (https://pustaka.darulmuttaqien.my.id/).</div>
         </div>
-        <button type="button" onclick="tutupEditorBlogger()" style="background:none; border:none; font-size:1.25rem; font-weight:700; color:#64748b; cursor:pointer;">&#10005;</button>
+        <button type="button" onclick="tutupEditorBlogger()" style="background:none; border:none; font-size:1.25rem; font-weight:700; color:#64748b; cursor:pointer;">✕</button>
       </div>
       <input type="hidden" id="bloggerEditId" value="" />
       <div class="form-grid">
         <div class="form-group">
           <label>Judul Postingan / Naskah *</label>
-          <input type="text" id="bloggerJudulInput" placeholder="Contoh: Khutbah Jumat: Menjaga Lisan &amp; Amanah" />
+          <input type="text" id="bloggerJudulInput" placeholder="Contoh: Khutbah Jumat: Menjaga Lisan & Amanah" />
         </div>
         <div class="form-group">
           <label>Label / Kategori *</label>
@@ -3048,15 +3077,15 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
         <label>Isi Tulisan / Naskah Khutbah atau Kajian *</label>
         <div class="blogger-rich-toolbar">
           <button type="button" class="blogger-rich-btn" onclick="sisipkanFormatBlogger('subjudul')">+ Subjudul</button>
-          <button type="button" class="blogger-rich-btn" onclick="sisipkanFormatBlogger('poin')">&#8226; Poin Daftar</button>
-          <button type="button" class="blogger-rich-btn" onclick="sisipkanFormatBlogger('kutipan')">&ldquo;Kutipan&rdquo;</button>
-          <button type="button" class="blogger-rich-btn" onclick="bersihkanSpasiWordBlogger()">&#129529; Rapikan Paste Word</button>
+          <button type="button" class="blogger-rich-btn" onclick="sisipkanFormatBlogger('poin')">• Paragraf Lanjutan</button>
+          <button type="button" class="blogger-rich-btn" onclick="sisipkanFormatBlogger('kutipan')">“Kutipan”</button>
+          <button type="button" class="blogger-rich-btn" onclick="bersihkanSpasiWordBlogger()">🧹 Rapikan Paragraf</button>
         </div>
-        <textarea id="bloggerIsiInput" class="blogger-editor-textarea" placeholder="Ketik atau tempel (Ctrl+V) isi naskah khutbah, kajian, atau artikel dari Microsoft Word di sini..."></textarea>
+        <textarea id="bloggerIsiInput" class="blogger-editor-textarea" placeholder="Ketik atau tempel (Ctrl+V) isi naskah khutbah, kajian, atau artikel dalam bentuk paragraf utuh di sini..."></textarea>
       </div>
       <div class="form-actions" style="justify-content:flex-end; margin-top:16px;">
         <button type="button" class="btn-smooth" onclick="tutupEditorBlogger()">Batal</button>
-        <button type="button" class="btn-action-primary" onclick="simpanPostinganBlogger()">&#128640; Terbitkan Postingan</button>
+        <button type="button" class="btn-action-primary" onclick="simpanPostinganBlogger()">🚀 Terbitkan Postingan</button>
       </div>
     </div>
   </div>
@@ -3070,12 +3099,12 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
           <h3 id="bacaBloggerJudul" style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--emerald-deep); margin:2px 0 4px;">Judul</h3>
           <div id="bacaBloggerMeta" style="font-size:0.8rem; color:var(--ink-muted);">Meta</div>
         </div>
-        <button type="button" onclick="tutupBacaBlogger()" style="background:none; border:none; font-size:1.25rem; font-weight:700; color:#64748b; cursor:pointer;">&#10005;</button>
+        <button type="button" onclick="tutupBacaBlogger()" style="background:none; border:none; font-size:1.25rem; font-weight:700; color:#64748b; cursor:pointer;">✕</button>
       </div>
       <div id="bacaBloggerArab" class="artikel-arab-18pt" style="display:none;"></div>
       <div id="bacaBloggerIsi" style="font-size:0.94rem; line-height:1.75; color:var(--ink-dark);"></div>
       <div id="bacaBloggerLampiranWrap" style="display:none; margin-top:14px; padding-top:12px; border-top:1px dashed #cbd5e1;">
-        <a id="bacaBloggerLampiranLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-copy" style="text-decoration:none;">&#128206; Buka Lampiran / Foto / Dokumen &#8599;</a>
+        <a id="bacaBloggerLampiranLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-copy" style="text-decoration:none;">📎 Buka Lampiran / Foto / Dokumen ↗</a>
       </div>
       <div style="margin-top:14px; padding:10px 14px; background:#f4f8f6; border-radius:10px; font-size:0.84rem; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px;">
         <span>Baca lebih banyak di Pustaka Yayasan: <b>https://pustaka.darulmuttaqien.my.id/</b></span>
@@ -3087,7 +3116,7 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
     </div>
   </div>
 
-  <!-- MODAL VERIFIKASI PIN PANEL ADMIN RAPORT DIGITAL (DIKUNCI UTUH — TIDAK DISENTUH) -->
+  <!-- MODAL VERIFIKASI PIN PANEL ADMIN RAPORT DIGITAL -->
   <div id="modal-pin-admin-raport" onclick="if(event.target===this) tutupModalPinAdminRaport()" style="display:none; position:fixed; inset:0; background:rgba(7,41,27,0.65); z-index:999; align-items:center; justify-content:center; padding:16px;">
     <div style="background:#ffffff; border-radius:16px; border-top:4px solid #c59b27; max-width:410px; width:100%; padding:22px 24px; box-shadow:0 20px 40px rgba(0,0,0,0.28); font-family:'Plus Jakarta Sans',sans-serif;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
@@ -3109,3 +3138,6 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
 
 </body>
 </html>
+```[cite: 1, 2]
+
+Jika ada bagian artikel tertentu di *Google Sheets* yang ingin diperhalus kalimatnya satu per satu, beri tahu saja judulnya.
