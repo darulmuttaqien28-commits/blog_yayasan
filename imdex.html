@@ -2620,14 +2620,23 @@ Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
     function escapeHtmlBlogger(str) {
       return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
+    function aktifkanLinkOtomatis(htmlTeks) {
+      return htmlTeks.replace(/(https?:\/\/[^\s<]+)/g, function(url) {
+        var bersih = url.replace(/[.,;!?)]+$/, '');
+        var sisa = url.slice(bersih.length);
+        return '<a href="' + bersih + '" target="_blank" rel="noopener noreferrer" style="color:#0b3d28; font-weight:700; text-decoration:underline;">' + bersih + '</a>' + sisa;
+      });
+    }
+
     function formatParagrafBlogger(teks) {
       var bersih = String(teks || '').replace(/\r\n/g, '\n').trim();
       if (!bersih) return '<p><em>Belum ada isi tulisan.</em></p>';
       return bersih.split(/\n\s*\n/).map(function(b) {
         var trimmed = b.trim();
         if (trimmed.indexOf('### ') === 0) return '<h4 style="font-family:\'Cormorant Garamond\',serif; font-size:1.25rem; color:var(--emerald-deep); margin:12px 0 6px;">' + escapeHtmlBlogger(trimmed.slice(4)) + '</h4>';
-        if (trimmed.indexOf('> ') === 0) return '<blockquote style="border-left:3px solid var(--gold-primary); padding-left:12px; margin:10px 0; font-style:italic; color:var(--emerald-deep);">' + escapeHtmlBlogger(trimmed.slice(2)) + '</blockquote>';
-        return '<p style="margin-bottom:10px;">' + escapeHtmlBlogger(trimmed).replace(/\n/g, '<br>') + '</p>';
+        if (trimmed.indexOf('> ') === 0) return '<blockquote style="border-left:3px solid var(--gold-primary); padding-left:12px; margin:10px 0; font-style:italic; color:var(--emerald-deep);">' + aktifkanLinkOtomatis(escapeHtmlBlogger(trimmed.slice(2))) + '</blockquote>';
+        var paragrafDenganBr = escapeHtmlBlogger(trimmed).replace(/\n/g, '<br>');
+        return '<p style="margin-bottom:10px;">' + aktifkanLinkOtomatis(paragrafDenganBr) + '</p>';
       }).join('');
     }
     function filterPostinganBlogger(label, btnEl) {
