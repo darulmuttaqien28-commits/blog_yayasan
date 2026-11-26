@@ -1,0 +1,2967 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Resmi, Galeri & Donasi Yayasan Darul Muttaqien — Teluk Gelam, OKI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --emerald-deep: #0b3d28;
+      --emerald-mid: #13583c;
+      --emerald-soft: #e9f2ee;
+      --emerald-active: #063220;
+      --gold-primary: #c59b27;
+      --dana-blue: #118eea;
+      --bg-smooth-top: #fcfaf6;
+      --bg-smooth-bottom: #f1eee5;
+      --card-surface: #ffffff;
+      --ink-dark: #1d2622;
+      --ink-muted: #5a6660;
+      --border-subtle: rgba(197, 155, 39, 0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(180deg, var(--bg-smooth-top) 0%, var(--bg-smooth-bottom) 100%);
+      color: var(--ink-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.68;
+      min-height: 100vh;
+    }
+
+    /* 1. BILAH ATAS (SEJAJAR: PORTAL PEGAWAI & PORTAL SANTRI) */
+    .top-bar {
+      background: #07291b;
+      color: #e8e4d9;
+      font-size: 0.82rem;
+      padding: 8px 20px;
+      border-bottom: 1px solid rgba(197, 155, 39, 0.35);
+      position: relative;
+      z-index: 300;
+    }
+    .top-bar-inner {
+      max-width: 1140px; margin: auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+    }
+    .portal-pill-btn {
+      background: rgba(197, 155, 39, 0.22);
+      border: 1px solid var(--gold-primary);
+      color: #f5dc93;
+      padding: 5px 15px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: inline-flex; align-items: center; gap: 6px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .portal-pill-btn:hover, .portal-pill-btn.active-portal {
+      background: var(--gold-primary);
+      color: #07291b;
+    }
+
+    /* DROPDOWN PORTAL SANTRI — LOGIKA STABIL & ANTI-TERPUTUS */
+    .portal-santri-dropdown {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 4px;
+      margin-bottom: -4px;
+    }
+    .santri-dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: var(--card-surface);
+      min-width: 275px;
+      list-style: none;
+      border-radius: 14px;
+      border: 1px solid rgba(197, 155, 39, 0.35);
+      border-top: 4px solid var(--gold-primary);
+      box-shadow: 0 18px 38px rgba(7, 41, 27, 0.24);
+      z-index: 400;
+      padding: 8px;
+      margin-top: 4px;
+    }
+    .santri-dropdown-menu::before {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 0;
+      right: 0;
+      height: 12px;
+    }
+    .portal-santri-dropdown:hover > .santri-dropdown-menu,
+    .portal-santri-dropdown.open > .santri-dropdown-menu {
+      display: block;
+    }
+    .santri-dropdown-menu > li {
+      position: relative;
+      margin-bottom: 5px;
+    }
+    .santri-dropdown-menu > li:last-child {
+      margin-bottom: 0;
+    }
+    .santri-dropdown-menu > li > a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      text-decoration: none;
+      color: var(--ink-dark);
+      font-size: 0.86rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
+    .menu-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sub-icon-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .santri-dropdown-menu > li > a:hover .sub-icon-badge {
+      transform: scale(1.08);
+    }
+    .sub-text-group {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+      text-align: left;
+    }
+    .sub-title {
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+    .sub-desc {
+      font-size: 0.71rem;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+
+    .item-santri-aktif { background: #eef8f3; color: #0b3d28 !important; border: 1px solid #cce8da; }
+    .item-santri-aktif .sub-icon-badge { background: #10b981; color: #ffffff; }
+    .item-santri-aktif:hover { background: #0b3d28 !important; color: #f5dc93 !important; }
+
+    .item-alumni { background: #fef9ec; color: #78550a !important; border: 1px solid #f7e3ab; }
+    .item-alumni .sub-icon-badge { background: #d97706; color: #ffffff; }
+    .item-alumni:hover { background: #92400e !important; color: #fef3c7 !important; }
+
+    .item-raport { background: #f3f0ff; color: #4c1d95 !important; border: 1px solid #ddd6fe; }
+    .item-raport .sub-icon-badge { background: #7c3aed; color: #ffffff; }
+    .item-raport:hover { background: #5b21b6 !important; color: #ede9fe !important; }
+
+    .item-spp { background: #eef7ff; color: #075985 !important; border: 1px solid #bae6fd; }
+    .item-spp .sub-icon-badge { background: #118eea; color: #ffffff; }
+    .item-spp:hover { background: #0369a1 !important; color: #e0f2fe !important; }
+
+    /* SUB-DROPDOWN TAHUN ALUMNI DENGAN JEMBATAN KURSOR */
+    .alumni-year-submenu {
+      display: none;
+      position: absolute;
+      right: calc(100% + 6px);
+      top: 0;
+      background: var(--card-surface);
+      min-width: 205px;
+      list-style: none;
+      border-radius: 12px;
+      border: 1px solid rgba(217, 119, 6, 0.35);
+      border-top: 3px solid #d97706;
+      box-shadow: 0 14px 30px rgba(7, 41, 27, 0.22);
+      z-index: 450;
+      padding: 6px;
+    }
+    .alumni-year-submenu::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -12px;
+      width: 12px;
+      height: 100%;
+    }
+    .santri-dropdown-menu > li.has-year-sub:hover > .alumni-year-submenu,
+    .santri-dropdown-menu > li.has-year-sub.sub-open > .alumni-year-submenu {
+      display: block;
+    }
+    .alumni-year-submenu li { margin-bottom: 4px; }
+    .alumni-year-submenu li:last-child { margin-bottom: 0; }
+    .alumni-year-submenu li a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: #78350f;
+      background: #fffbeb;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .alumni-year-submenu li a:hover {
+      background: #d97706;
+      color: #ffffff;
+      padding-left: 16px;
+    }
+
+    /* 2. HEADER KOP RESMI */
+    header.kop-header {
+      background: linear-gradient(135deg, var(--emerald-deep) 0%, var(--emerald-mid) 100%);
+      color: #ffffff;
+      padding: 26px 20px;
+      border-bottom: 4px solid var(--gold-primary);
+      position: relative;
+      overflow: hidden;
+    }
+    header.kop-header::after {
+      content: "۞";
+      position: absolute; right: -20px; top: -35px;
+      font-family: 'Amiri', serif; font-size: 14rem;
+      color: rgba(255, 255, 255, 0.04); pointer-events: none;
+    }
+    .kop-container {
+      max-width: 1140px; margin: 0 auto;
+      display: flex; align-items: center; gap: 24px; position: relative; z-index: 2;
+    }
+    .kop-logo {
+      flex-shrink: 0; width: 115px; height: 115px;
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 18px; padding: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+      border: 2px solid var(--gold-primary);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .kop-logo img, .kop-logo svg { width: 100%; height: 100%; object-fit: contain; }
+    .kop-info { flex: 1; text-align: left; }
+    .kop-bismillah { font-family: 'Amiri', serif; font-size: 1.35rem; color: #f5dc93; margin-bottom: 2px; }
+    .kop-info h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.65rem, 3.2vw, 2.4rem);
+      font-weight: 700; letter-spacing: 0.8px; line-height: 1.15; color: #ffffff; margin-bottom: 6px;
+    }
+    .kop-wilayah { font-size: 0.9rem; font-weight: 600; color: #f5dc93; letter-spacing: 0.4px; margin-bottom: 4px; }
+    .kop-alamat { font-size: 0.86rem; color: #e6f0ec; margin-bottom: 3px; }
+    .kop-akte {
+      display: inline-block; margin-top: 4px; font-size: 0.78rem; color: #d0e2da;
+      background: rgba(0, 0, 0, 0.22); padding: 3px 10px; border-radius: 4px;
+      border-left: 2px solid var(--gold-primary);
+    }
+
+    /* 3. NAVIGASI UTAMA */
+    nav.main-nav {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 16px rgba(11, 61, 40, 0.04);
+      position: sticky; top: 0; z-index: 100;
+      padding: 6px 0;
+    }
+    .nav-inner { max-width: 1140px; margin: 0 auto; display: flex; justify-content: center; align-items: center; padding: 0 15px; }
+    .mobile-btn {
+      display: none; width: 100%; background: none; border: none; padding: 11px;
+      font-size: 0.95rem; font-weight: 700; color: var(--emerald-deep); cursor: pointer;
+    }
+    ul.nav-menu { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+    ul.nav-menu > li { position: relative; display: flex; align-items: center; }
+    ul.nav-menu > li > a {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 38px; padding: 0 14px;
+      text-decoration: none;
+      color: var(--emerald-deep); font-weight: 700; font-size: 0.87rem;
+      cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 8px;
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+    }
+    ul.nav-menu > li > a:hover { color: var(--gold-primary); background: var(--emerald-soft); transform: translateY(-1px); }
+    
+    ul.nav-menu > li > a.active-menu-item {
+      background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-mid)) !important;
+      color: #f5dc93 !important;
+      box-shadow: 0 3px 10px rgba(11, 61, 40, 0.24);
+      border-color: var(--gold-primary);
+    }
+
+    ul.sub-kajian {
+      display: none; position: absolute; top: 100%; left: 0;
+      background: var(--card-surface); min-width: 215px; list-style: none;
+      border-radius: 10px; border: 1px solid var(--border-subtle);
+      border-top: 3px solid var(--gold-primary);
+      box-shadow: 0 12px 28px rgba(11, 61, 40, 0.12); z-index: 200; overflow: hidden;
+    }
+    ul.nav-menu > li:hover > ul.sub-kajian { display: block; }
+    ul.sub-kajian li a {
+      display: block; padding: 11px 18px; text-decoration: none; color: var(--ink-dark);
+      font-size: 0.88rem; border-bottom: 1px solid #f4f1ea; cursor: pointer; transition: 0.2s;
+    }
+    ul.sub-kajian li a:hover { background: var(--emerald-deep); color: #f5dc93; padding-left: 22px; }
+
+    .btn-donasi-nav {
+      background: linear-gradient(135deg, var(--gold-primary), #b0871c) !important;
+      color: #ffffff !important;
+      box-shadow: 0 3px 10px rgba(197, 155, 39, 0.25);
+    }
+    .btn-donasi-nav:hover { filter: brightness(1.06); color: #ffffff !important; }
+    .btn-donasi-nav.active-menu-item {
+      background: linear-gradient(135deg, #a67c1e, #8c6413) !important;
+      color: #ffffff !important;
+      border-color: var(--emerald-deep);
+    }
+
+    /* 4. AREA UTAMA */
+    .container { max-width: 1140px; margin: 28px auto; padding: 0 18px 45px; }
+
+    .quote-banner {
+      background: var(--card-surface); border-radius: 16px; padding: 24px 28px;
+      text-align: center; margin-bottom: 26px;
+      box-shadow: 0 10px 30px rgba(11, 61, 40, 0.04);
+      border: 1px solid rgba(197, 155, 39, 0.22);
+    }
+    .quote-arabic { font-family: 'Amiri', serif; font-size: 1.55rem; color: var(--emerald-deep); margin-bottom: 8px; line-height: 1.9; }
+    .quote-translation { font-style: italic; color: var(--ink-dark); font-size: 0.96rem; max-width: 780px; margin: 0 auto 6px; }
+    .quote-source { font-size: 0.8rem; font-weight: 700; color: var(--gold-primary); letter-spacing: 0.8px; }
+
+    /* PANEL BACA & RUANG AKTIF */
+    .viewer-panel {
+      background: linear-gradient(135deg, #ffffff 0%, #f9fbf9 100%);
+      border-radius: 16px; padding: 26px 28px; margin-bottom: 34px;
+      box-shadow: 0 10px 30px rgba(11, 61, 40, 0.06);
+      border: 1px solid rgba(19, 88, 60, 0.16);
+      border-left: 5px solid var(--emerald-mid);
+    }
+    .viewer-tag {
+      display: inline-block; background: var(--emerald-soft); color: var(--emerald-deep);
+      font-size: 0.76rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
+    }
+    .viewer-panel h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; color: var(--emerald-deep); margin-bottom: 10px; line-height: 1.25; }
+    .viewer-body { font-size: 0.94rem; color: var(--ink-dark); }
+    .viewer-body p { margin-bottom: 12px; }
+
+    /* GAYA MAJALAH PROFESIONAL UNTUK KAJIAN ISLAM */
+    .magazine-article {
+      background: #fffdf9;
+      border: 1px solid rgba(197, 155, 39, 0.35);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-top: 8px;
+      box-shadow: inset 0 0 40px rgba(197, 155, 39, 0.04);
+    }
+    .mag-header {
+      border-bottom: 2px solid var(--emerald-deep);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    .mag-rubrik {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .mag-edition {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      font-weight: 600;
+      background: var(--emerald-soft);
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+    .mag-lead {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--emerald-deep);
+      line-height: 1.6;
+      border-left: 3px solid var(--gold-primary);
+      padding-left: 16px;
+      margin-bottom: 22px;
+    }
+    .mag-columns {
+      column-count: 2;
+      column-gap: 34px;
+      column-rule: 1px solid rgba(197, 155, 39, 0.28);
+      text-align: justify;
+    }
+    .mag-columns p {
+      margin-bottom: 14px;
+      font-size: 0.94rem;
+      line-height: 1.78;
+    }
+    .mag-columns p:first-of-type::first-letter {
+      float: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.4rem;
+      line-height: 0.85;
+      padding-right: 10px;
+      padding-top: 4px;
+      color: var(--emerald-deep);
+      font-weight: 700;
+    }
+    .mag-pullquote {
+      break-inside: avoid;
+      background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-mid));
+      color: #f5dc93;
+      padding: 18px 20px;
+      border-radius: 12px;
+      margin: 16px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      line-height: 1.5;
+      border-left: 4px solid var(--gold-primary);
+    }
+    .mag-arabic-box {
+      break-inside: avoid;
+      background: #f5f9f7;
+      border: 1px solid #cce3d8;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      text-align: right;
+      font-family: 'Amiri', serif;
+      font-size: 1.45rem;
+      color: var(--emerald-deep);
+      line-height: 2;
+    }
+    .mag-tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .mag-tab-btn {
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid var(--border-subtle);
+      background: #fff;
+      color: var(--emerald-deep);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .mag-tab-btn.active, .mag-tab-btn:hover {
+      background: var(--emerald-deep);
+      color: #f5dc93;
+    }
+
+    /* KUMPULAN KHUTBAH: CETAK F4 LANDSCAPE 2 KOLOM (ARAB 20pt) & EKSPOR */
+    .khutbah-toolbar {
+      background: #f4f8f6;
+      border: 1px solid #cce3d8;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .khutbah-sheet-preview {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 26px 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+    .khutbah-2col-body {
+      column-count: 2;
+      column-gap: 32px;
+      column-rule: 1px dashed #cbd5e1;
+      text-align: justify;
+    }
+    .khutbah-2col-body p {
+      margin-bottom: 12px;
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+    .khutbah-arab {
+      font-family: 'Amiri', serif;
+      font-size: 20pt;
+      line-height: 1.95;
+      text-align: right;
+      direction: rtl;
+      color: #0b3d28;
+      background: #f8fbf9;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border-right: 3px solid var(--gold-primary);
+      margin: 10px 0;
+      break-inside: avoid;
+    }
+    .btn-export-doc {
+      background: #1d4ed8;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-export-doc:hover { filter: brightness(1.08); }
+
+    /* GALERI FOTO DENGAN INFO TAHUN & KOLOM BORDERLESS CATATAN */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+      margin-top: 16px;
+    }
+    .gallery-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .gallery-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 185px;
+      overflow: hidden;
+    }
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .gallery-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-year-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(7, 41, 27, 0.88);
+      color: #f5dc93;
+      border: 1px solid var(--gold-primary);
+      padding: 4px 11px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+    .gallery-body {
+      padding: 16px 18px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .gallery-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--emerald-mid);
+      margin-bottom: 4px;
+    }
+    .gallery-body h5 {
+      font-size: 1rem;
+      color: var(--emerald-deep);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .gallery-body p.gal-desc {
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+    }
+    .gallery-borderless-note {
+      margin-top: auto;
+      padding-top: 8px;
+      background: #faf9f5;
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .gallery-borderless-note textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      resize: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--ink-dark);
+      line-height: 1.5;
+    }
+    .gallery-borderless-note textarea::placeholder {
+      color: #94a3b8;
+      font-style: italic;
+    }
+    .note-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.71rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* TOOLBAR PENCARIAN & SINKRONISASI DATA SANTRI / ALUMNI */
+    .directory-toolbar {
+      background: #f4f8f6;
+      border: 1px solid #cce3d8;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 14px 0 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .search-input-wrap {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-input-wrap input {
+      width: 100%;
+      padding: 9px 14px 9px 36px;
+      border: 1.5px solid #b7d4c6;
+      border-radius: 9px;
+      font-size: 0.86rem;
+      background: #ffffff;
+      color: var(--ink-dark);
+    }
+    .search-input-wrap span.search-icon {
+      position: absolute;
+      left: 11px;
+      font-size: 0.92rem;
+      color: var(--emerald-mid);
+      pointer-events: none;
+    }
+    .filter-controls-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .filter-controls-wrap select {
+      padding: 9px 12px;
+      border: 1.5px solid #b7d4c6;
+      border-radius: 9px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      background: #ffffff;
+      color: var(--emerald-deep);
+      cursor: pointer;
+    }
+    .sync-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .btn-import-sim {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--emerald-deep);
+      color: #f5dc93;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* GRID TOMBOL QUICK ACTION DI BERANDA */
+    .beranda-quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .beranda-quick-actions .btn-quick {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 40px;
+      padding: 0 16px;
+      border-radius: 9px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+    .btn-quick-primary { background: var(--emerald-deep); color: #f5dc93; }
+    .btn-quick-primary:hover { background: var(--emerald-mid); transform: translateY(-1px); }
+    .btn-quick-soft { background: var(--emerald-soft); color: var(--emerald-deep); }
+    .btn-quick-soft:hover { background: var(--emerald-deep); color: #f5dc93; transform: translateY(-1px); }
+
+    /* KARTU REKENING, DONASI, KATALOG & MEDSOS */
+    .bank-card-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 18px 0;
+    }
+    .bank-card {
+      background: linear-gradient(135deg, #f7fbf9 0%, #edf7f2 100%);
+      border: 1.5px solid rgba(19, 88, 60, 0.25);
+      border-radius: 14px; padding: 20px;
+      box-shadow: 0 4px 14px rgba(11,61,40,0.04);
+    }
+    .bank-name { font-weight: 800; color: var(--emerald-deep); font-size: 1.05rem; margin-bottom: 6px; }
+    .bank-number { font-family: monospace; font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; letter-spacing: 0.5px; }
+    .bank-holder { font-size: 0.82rem; color: var(--ink-muted); margin-bottom: 12px; }
+
+    .dana-box {
+      background: linear-gradient(135deg, #eef7ff 0%, #f7fbff 100%);
+      border: 1.5px solid #93c5fd;
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin: 14px 0;
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px;
+    }
+    .dana-badge {
+      background: var(--dana-blue); color: #fff; font-weight: 800; font-size: 0.75rem;
+      padding: 3px 10px; border-radius: 6px; display: inline-block; margin-bottom: 4px;
+    }
+    .dana-number { font-size: 1.35rem; font-weight: 800; color: #0f172a; letter-spacing: 0.8px; font-family: monospace; }
+    
+    .btn-action-primary {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--emerald-deep); color: #f5dc93 !important;
+      padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none;
+      font-size: 0.86rem; border: none; cursor: pointer; transition: 0.2s;
+    }
+    .btn-action-primary:hover { background: var(--emerald-mid); transform: translateY(-1px); }
+    
+    .btn-copy {
+      background: var(--emerald-mid); color: #fff; padding: 8px 14px; border-radius: 8px;
+      font-weight: 700; font-size: 0.82rem; border: none; cursor: pointer;
+    }
+    .btn-copy:hover { filter: brightness(1.08); }
+
+    .btn-dana-copy {
+      background: var(--dana-blue); color: #fff; padding: 9px 16px; border-radius: 10px;
+      font-weight: 700; font-size: 0.84rem; border: none; cursor: pointer;
+    }
+
+    .btn-wa {
+      background: #25d366; color: #fff; text-decoration: none; padding: 8px 14px;
+      border-radius: 8px; font-weight: 700; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 5px;
+      border: none; cursor: pointer;
+    }
+
+    /* FORM CETAK & KIRIM BUKTI TRANSFER */
+    .receipt-form-box {
+      background: #fdfdfc; border: 1.5px solid var(--border-subtle); border-radius: 14px; padding: 20px; margin-top: 20px;
+    }
+    .receipt-form-box h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--emerald-deep); margin-bottom: 12px; }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--emerald-deep); margin-bottom: 4px; }
+    .form-group input, .form-group select { width: 100%; padding: 9px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.88rem; }
+    .form-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 14px; }
+    .video-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .video-container { position: relative; width: 100%; padding-bottom: 56.25%; background: #0f172a; }
+    .video-container iframe, .video-placeholder { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; background: linear-gradient(135deg, #0b3d28, #13583c); }
+    .video-body { padding: 14px; }
+    .video-body h5 { font-size: 0.95rem; color: var(--emerald-deep); font-weight: 700; margin-bottom: 4px; }
+    .video-body p { font-size: 0.82rem; color: var(--ink-muted); }
+
+    .ornament-divider { text-align: center; margin: 32px 0 24px; position: relative; }
+    .ornament-divider span {
+      background: #f7f4ed; padding: 4px 22px; border-radius: 20px;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 700;
+      color: var(--emerald-deep); position: relative; z-index: 1; border: 1px solid var(--border-subtle);
+    }
+    .ornament-divider::before {
+      content: ""; position: absolute; top: 50%; left: 0; right: 0;
+      height: 1px; background: linear-gradient(to right, transparent, rgba(197, 155, 39, 0.45), transparent);
+    }
+
+    /* RAK 4 CABANG KAJIAN */
+    .kajian-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 36px; }
+    .kajian-card {
+      background: var(--card-surface); border-radius: 16px; padding: 22px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      box-shadow: 0 8px 24px rgba(11, 61, 40, 0.04);
+      border: 1px solid rgba(11, 61, 40, 0.07); transition: all 0.3s ease;
+    }
+    .kajian-card:hover { transform: translateY(-5px); box-shadow: 0 14px 32px rgba(11, 61, 40, 0.09); border-color: rgba(197, 155, 39, 0.5); }
+    .kajian-arabic-title { font-family: 'Amiri', serif; font-size: 1.35rem; color: var(--gold-primary); margin-bottom: 2px; }
+    .kajian-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.38rem; color: var(--emerald-deep); margin-bottom: 6px; }
+    .kajian-kitab { font-size: 0.78rem; font-weight: 700; color: var(--emerald-mid); margin-bottom: 8px; }
+    .kajian-card p { font-size: 0.87rem; color: var(--ink-muted); margin-bottom: 18px; }
+    .btn-smooth {
+      align-self: flex-start; background: var(--emerald-soft); border: none;
+      color: var(--emerald-deep); padding: 8px 16px; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: 0.25s;
+    }
+    .btn-smooth:hover { background: var(--emerald-deep); color: #f5dc93; }
+
+    /* KOLOM GANDA */
+    .editorial-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+    .editorial-box {
+      background: var(--card-surface); border-radius: 16px; padding: 24px;
+      box-shadow: 0 8px 24px rgba(11, 61, 40, 0.04); border: 1px solid rgba(11, 61, 40, 0.07);
+    }
+    .editorial-box h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.42rem; color: var(--emerald-deep);
+      padding-bottom: 10px; margin-bottom: 14px; border-bottom: 1px solid #efece4;
+    }
+    .item-row { padding: 12px; border-radius: 10px; transition: 0.2s; border-bottom: 1px dashed #ebe6da; }
+    .item-row:last-child { border-bottom: none; }
+    .item-row:hover { background: #f9f7f2; }
+    .item-row h4 { font-size: 0.95rem; color: var(--ink-dark); margin-bottom: 4px; cursor: pointer; }
+    .item-row h4:hover { color: var(--emerald-mid); text-decoration: underline; }
+    .item-meta { font-size: 0.78rem; color: var(--ink-muted); }
+
+    .ulama-wisdom {
+      background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-mid));
+      color: #f3efe6; border-radius: 16px; padding: 28px 24px; text-align: center;
+      box-shadow: 0 10px 28px rgba(11, 61, 40, 0.12);
+    }
+    .ulama-wisdom p { font-family: 'Amiri', serif; font-size: 1.3rem; font-style: italic; color: #ffffff; margin-bottom: 6px; }
+    .ulama-wisdom span { font-size: 0.84rem; color: #f5dc93; font-weight: 600; }
+
+    /* TABEL DATA VIEW-ONLY */
+    .sim-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 6px; }
+    .sim-table th { background: var(--emerald-deep); color: #fff; padding: 10px 12px; text-align: left; }
+    .sim-table td { padding: 10px 12px; border-bottom: 1px solid #e5e7eb; background: #fff; }
+    .sim-table tr:hover td { background: #f8fbf9; }
+
+    /* EDITOR POSTINGAN GAYA BLOGGER (TERKUNCI PIN ADMIN + CLOUD SYNC) */
+    .blogger-toolbar-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      background: #f4f8f6;
+      border: 1px solid #cce3d8;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+    .blogger-label-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .blogger-pill {
+      padding: 6px 13px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px solid rgba(19, 88, 60, 0.25);
+      background: #ffffff;
+      color: var(--emerald-deep);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .blogger-pill.active, .blogger-pill:hover {
+      background: var(--emerald-deep);
+      color: #f5dc93;
+    }
+    .blogger-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .blogger-post-card {
+      background: #ffffff;
+      border: 1px solid rgba(19, 88, 60, 0.16);
+      border-top: 3px solid var(--gold-primary);
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: 0 5px 16px rgba(11, 61, 40, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .blogger-post-label {
+      display: inline-block;
+      background: var(--emerald-soft);
+      color: var(--emerald-deep);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+    .blogger-post-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.32rem;
+      font-weight: 700;
+      color: var(--emerald-deep);
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .blogger-post-meta {
+      font-size: 0.76rem;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+    .blogger-post-excerpt {
+      font-size: 0.85rem;
+      color: var(--ink-dark);
+      margin-bottom: 12px;
+      line-height: 1.55;
+    }
+    .blogger-post-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: auto;
+    }
+    .blogger-admin-only {
+      display: none !important;
+    }
+    body.blogger-admin-unlocked .blogger-admin-only {
+      display: inline-flex !important;
+    }
+    .blogger-editor-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 41, 27, 0.65);
+      z-index: 998;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    .blogger-editor-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border-top: 4px solid var(--gold-primary);
+      max-width: 720px;
+      width: 100%;
+      padding: 22px 24px;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .blogger-rich-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      background: #f8faf9;
+      border: 1px solid #cbd5e1;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      padding: 8px 10px;
+    }
+    .blogger-rich-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--emerald-deep);
+      cursor: pointer;
+    }
+    .blogger-rich-btn:hover {
+      background: var(--emerald-soft);
+    }
+    .blogger-editor-textarea {
+      width: 100%;
+      min-height: 210px;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 0 0 8px 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--ink-dark);
+      resize: vertical;
+    }
+
+    @media (max-width: 900px) {
+      .kajian-grid { grid-template-columns: repeat(2, 1fr); }
+      .mag-columns, .khutbah-2col-body { column-count: 1; }
+    }
+    @media (max-width: 768px) {
+      .kop-container { flex-direction: column; text-align: center; gap: 14px; }
+      .kop-info { text-align: center; }
+      .kop-logo { width: 96px; height: 96px; }
+      .mobile-btn { display: block; }
+      ul.nav-menu { display: none; flex-direction: column; width: 100%; padding-bottom: 12px; }
+      ul.nav-menu.open { display: flex; }
+      ul.nav-menu > li { width: 100%; justify-content: center; }
+      ul.nav-menu > li > a { width: 90%; justify-content: center; }
+      ul.sub-kajian { position: static; box-shadow: none; border: none; background: #f6f4ed; border-radius: 8px; width: 90%; }
+      ul.nav-menu > li:hover > ul.sub-kajian { display: block; }
+      .editorial-columns { grid-template-columns: 1fr; }
+      .top-bar-inner { justify-content: center; text-align: center; }
+      .santri-dropdown-menu { right: auto; left: 50%; transform: translateX(-50%); min-width: 280px; }
+      .alumni-year-submenu { position: static; box-shadow: none; border: none; background: #fef3c7; margin-right: 0; margin-top: 4px; padding: 6px; }
+    }
+    @media (max-width: 500px) { .kajian-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- 1. BILAH ATAS (PORTAL PEGAWAI & PORTAL SANTRI DENGAN LOGIKA DROPDOWN STABIL) -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div>
+        <a href="sim_mdta_darul_muttaqien_gdrive-v6.html" class="portal-pill-btn">
+          🏛️ Portal Adm / Pegawai ↗
+        </a>
+      </div>
+
+      <div class="portal-santri-dropdown" id="portalSantriBox">
+        <button type="button" class="portal-pill-btn" id="btnPortalSantri" onclick="togglePortalSantri(event)">
+          🎓 Portal Santri ▾
+        </button>
+        <ul class="santri-dropdown-menu" onclick="event.stopPropagation()">
+          <li>
+            <a href="javascript:void(0)" class="item-santri-aktif" onclick="pilihMenuSantri('santri_aktif')">
+              <div class="menu-item-left">
+                <span class="sub-icon-badge">🧑‍🎓</span>
+                <div class="sub-text-group">
+                  <span class="sub-title">Santri Aktif</span>
+                  <span class="sub-desc">Import data SIM Pegawai</span>
+                </div>
+              </div>
+              <span>›</span>
+            </a>
+          </li>
+          <li class="has-year-sub" id="liAlumniSub">
+            <a href="javascript:void(0)" class="item-alumni" onclick="toggleSubAlumni(event)">
+              <div class="menu-item-left">
+                <span class="sub-icon-badge">🎓</span>
+                <div class="sub-text-group">
+                  <span class="sub-title">Alumni</span>
+                  <span class="sub-desc">Dropdown tahun angkatan</span>
+                </div>
+              </div>
+              <span>◂</span>
+            </a>
+            <ul class="alumni-year-submenu">
+              <li><a href="javascript:void(0)" onclick="bukaAlumniTahun('ALL')">📅 Semua Tahun Lulus</a></li>
+              <li><a href="javascript:void(0)" onclick="bukaAlumniTahun('2025')">🏅 Angkatan Tahun 2025</a></li>
+              <li><a href="javascript:void(0)" onclick="bukaAlumniTahun('2024')">🏅 Angkatan Tahun 2024</a></li>
+              <li><a href="javascript:void(0)" onclick="bukaAlumniTahun('2023')">🏅 Angkatan Tahun 2023</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:void(0)" class="item-raport" onclick="pilihMenuSantri('raport_online')">
+              <div class="menu-item-left">
+                <span class="sub-icon-badge">📊</span>
+                <div class="sub-text-group">
+                  <span class="sub-title">Raport Online</span>
+                  <span class="sub-desc">Cek nilai & evaluasi santri</span>
+                </div>
+              </div>
+              <span>›</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" class="item-spp" onclick="pilihMenuSantri('bayar_spp')">
+              <div class="menu-item-left">
+                <span class="sub-icon-badge">💳</span>
+                <div class="sub-text-group">
+                  <span class="sub-title">Bayar SPP</span>
+                  <span class="sub-desc">Pembayaran online via DANA</span>
+                </div>
+              </div>
+              <span>›</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. HEADER KOP RESMI -->
+  <header class="kop-header">
+    <div class="kop-container">
+      <div class="kop-logo">
+        <img src="https://drive.google.com/thumbnail?id=1X3an7nqfel2WAK6tyl584yXOQu3Zd5IQ&sz=w500"
+             alt="Logo Yayasan Darul Muttaqien"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1X3an7nqfel2WAK6tyl584yXOQu3Zd5IQ=w500';"
+             style="width:100%; height:100%; object-fit:contain;" />
+      </div>
+
+      <div class="kop-info">
+        <div class="kop-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+        <h1>YAYASAN DARUL MUTTAQIEN</h1>
+        <div class="kop-wilayah">DESA TALANG PANGERAN KECAMATAN TELUK GELAM KABUPATEN OGAN KOMERING ILIR SUMSEL</div>
+        <div class="kop-alamat">📍 Jl. Mesjid No. 110 Dusun II Desa Talang Pangeran, Kode Pos 30673 &nbsp;|&nbsp; 📞 No. HP: 0853-8227-9767</div>
+        <div class="kop-akte">Akte Notaris Emmy Natalia, S.H, Nomor : 21 Tanggal 16 Februari 2021</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. NAVIGASI UTAMA -->
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <button type="button" class="mobile-btn" onclick="document.getElementById('navList').classList.toggle('open')">☰ Menu Portal Yayasan</button>
+      <ul class="nav-menu" id="navList">
+        <li><a href="javascript:void(0)" onclick="tampilSimulasi('beranda')" id="nav-beranda">Beranda</a></li>
+        <li>
+          <a href="javascript:void(0)" onclick="tampilSimulasi('kajian_akidah')" id="nav-kajian">Kajian ▾</a>
+          <ul class="sub-kajian">
+            <li><a href="javascript:void(0)" onclick="tampilSimulasi('kajian_akidah')">• Kajian Akidah</a></li>
+            <li><a href="javascript:void(0)" onclick="tampilSimulasi('kajian_fiqh')">• Kajian Fiqh</a></li>
+            <li><a href="javascript:void(0)" onclick="tampilSimulasi('kajian_akhlak')">• Kajian Akhlak</a></li>
+            <li><a href="javascript:void(0)" onclick="tampilSimulasi('kajian_tarikh')">• Kajian Tarikh</a></li>
+          </ul>
+        </li>
+        <li><a href="javascript:void(0)" onclick="tampilSimulasi('khutbah_1')" id="nav-khutbah">Kumpulan Khutbah</a></li>
+        <li><a href="javascript:void(0)" onclick="tampilSimulasi('artikel_1')" id="nav-artikel">Artikel</a></li>
+        <li><a href="javascript:void(0)" onclick="tampilSimulasi('katalog_dakwah')" id="nav-katalog_dakwah">Katalog Dakwah</a></li>
+        <li><a href="javascript:void(0)" onclick="tampilSimulasi('media_sosial')" id="nav-media_sosial">Media Sosial</a></li>
+        <li><a href="javascript:void(0)" onclick="tampilSimulasi('galeri')" id="nav-galeri">Galeri</a></li>
+        <li><a href="javascript:void(0)" onclick="tampilSimulasi('video')" id="nav-video">Video</a></li>
+        <li><a href="javascript:void(0)" class="btn-donasi-nav" onclick="tampilSimulasi('donasi')" id="nav-donasi">🤲 Donasi & Infaq</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- PANEL BACA & KELOLA POSTINGAN GAYA BLOGGER (TERHUBUNG KE DATABASE BLOG YAYASAN) -->
+    <div class="viewer-panel" id="panel-blogger-cepat" style="margin-bottom: 24px; border-left-color: var(--gold-primary);">
+      <div class="blogger-toolbar-strip" style="margin-bottom: 10px;">
+        <div>
+          <span class="viewer-tag" style="margin-bottom: 4px;">&#128214; Papan Kajian, Kumpulan Khutbah &amp; Artikel</span>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--emerald-deep); margin: 0;">Arsip &amp; Postingan Dakwah Yayasan Darul Muttaqien</h3>
+          <div id="statusCloudBlogYayasan" style="font-size:0.74rem; font-weight:700; color:#0369a1; margin-top:3px;">☁️ Menghubungkan Database Blog Yayasan...</div>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+          <!-- Tombol kunci admin (default untuk pengunjung umum) -->
+          <button type="button" class="btn-smooth" id="btnBukaModeAdminBlog" onclick="bukaModalPinBlog()" title="Khusus Pengurus / Admin Blog">&#128274; Mode Admin Blog</button>
+
+          <!-- Tombol kelola gaya Blogger (hanya muncul setelah PIN Admin terverifikasi) -->
+          <button type="button" class="btn-action-primary blogger-admin-only" onclick="bukaEditorBlogger()">&#9999;&#65039; Tulis / Tempel Postingan</button>
+          <button type="button" class="btn-smooth blogger-admin-only" onclick="sinkronBlogDariCloud(true)">🔄 Sinkron Sheets Blog</button>
+          <button type="button" class="btn-copy blogger-admin-only" onclick="eksporDataBloggerJson()">&#128190; Cadangkan (.json)</button>
+          <button type="button" class="btn-smooth blogger-admin-only" onclick="document.getElementById('inputImportBloggerJson').click()">&#128194; Impor (.json)</button>
+          <button type="button" class="btn-smooth blogger-admin-only" style="background:#fee2e2; color:#991b1b;" onclick="kunciModeAdminBlog()">&#128272; Kunci Admin</button>
+          <input type="file" id="inputImportBloggerJson" accept=".json,application/json" style="display:none;" onchange="imporDataBloggerJson(event)" />
+        </div>
+      </div>
+
+      <div class="blogger-label-pills" id="bloggerFilterBar">
+        <span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:4px;">Label:</span>
+        <button type="button" class="blogger-pill active" data-label="Semua" onclick="filterPostinganBlogger('Semua', this)">Semua</button>
+        <button type="button" class="blogger-pill" data-label="Kajian" onclick="filterPostinganBlogger('Kajian', this)">Kajian</button>
+        <button type="button" class="blogger-pill" data-label="Khutbah" onclick="filterPostinganBlogger('Khutbah', this)">Khutbah</button>
+        <button type="button" class="blogger-pill" data-label="Galeri Foto" onclick="filterPostinganBlogger('Galeri Foto', this)">Galeri Foto</button>
+        <button type="button" class="blogger-pill" data-label="Artikel" onclick="filterPostinganBlogger('Artikel', this)">Artikel</button>
+      </div>
+
+      <div class="blogger-posts-grid" id="daftarPostinganBlogger"></div>
+    </div>
+
+    <!-- KUTIPAN HADITS KEUTAMAAN ILMU -->
+    <div class="quote-banner">
+      <div class="quote-arabic">مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ</div>
+      <div class="quote-translation">“Barang siapa menempuh suatu jalan untuk mencari ilmu, maka Allah akan memudahkan baginya jalan menuju surga.”</div>
+      <div class="quote-source">— HR. Muslim</div>
+    </div>
+
+    <!-- PANEL RUANG BACA & HALAMAN UTAMA / KHUSUS -->
+    <div class="viewer-panel" id="ruang-aktif"></div>
+
+    <!-- RAK 4 CABANG KAJIAN -->
+    <div class="ornament-divider"><span>۞ Khazanah Kajian Islam (Edisi Majalah) ۞</span></div>
+    <div class="kajian-grid">
+      <div class="kajian-card">
+        <div>
+          <div class="kajian-arabic-title">العقيدة</div>
+          <h3>Kajian Akidah</h3>
+          <div class="kajian-kitab">Kitab: Aqidatul Awam & Jauharut Tauhid</div>
+          <p>Memperkokoh pondasi tauhid, mengenal sifat wajib bagi Allah dan Rasul-Nya sesuai manhaj Ahlussunnah wal Jamaah.</p>
+        </div>
+        <button type="button" class="btn-smooth" onclick="tampilSimulasi('kajian_akidah')">Baca Edisi Majalah →</button>
+      </div>
+
+      <div class="kajian-card">
+        <div>
+          <div class="kajian-arabic-title">الفقه</div>
+          <h3>Kajian Fiqh</h3>
+          <div class="kajian-kitab">Kitab: Safinatun Najah & Fathul Qarib</div>
+          <p>Panduan praktis hukum thaharah, tata cara shalat berjamaah, zakat, puasa Ramadhan, hingga adab muamalah.</p>
+        </div>
+        <button type="button" class="btn-smooth" onclick="tampilSimulasi('kajian_fiqh')">Baca Edisi Majalah →</button>
+      </div>
+
+      <div class="kajian-card">
+        <div>
+          <div class="kajian-arabic-title">الأخلاق</div>
+          <h3>Kajian Akhlak</h3>
+          <div class="kajian-kitab">Kitab: Ta'limul Muta'allim & Washaya</div>
+          <p>Bimbingan adab penuntut ilmu kepada guru dan orang tua, serta latihan penyucian jiwa dari sifat tercela.</p>
+        </div>
+        <button type="button" class="btn-smooth" onclick="tampilSimulasi('kajian_akhlak')">Baca Edisi Majalah →</button>
+      </div>
+
+      <div class="kajian-card">
+        <div>
+          <div class="kajian-arabic-title">التاريخ</div>
+          <h3>Kajian Tarikh</h3>
+          <div class="kajian-kitab">Kitab: Khulashah Nurul Yaqin</div>
+          <p>Meneladani perjalanan dakwah Rasulullah ﷺ di Makkah dan Madinah serta kisah teladan para sahabat mulia.</p>
+        </div>
+        <button type="button" class="btn-smooth" onclick="tampilSimulasi('kajian_tarikh')">Baca Edisi Majalah →</button>
+      </div>
+    </div>
+
+    <!-- KUMPULAN KHUTBAH & ARTIKEL -->
+    <div class="editorial-columns">
+      <div class="editorial-box">
+        <h3>🕌 Kumpulan Khutbah Pilihan (Siap Cetak F4)</h3>
+        <div class="item-row">
+          <h4 onclick="tampilSimulasi('khutbah_1')">Khutbah Jumat: Keutamaan Menjaga Lisan dan Amanah</h4>
+          <div class="item-meta">Dewan Asatidz Darul Muttaqien • Format F4 Landscape 2 Kolom & Ekspor</div>
+        </div>
+        <div class="item-row">
+          <h4 onclick="tampilSimulasi('khutbah_2')">Khutbah Jumat: Mendidik Generasi Qur'ani di Era Digital</h4>
+          <div class="item-meta">Mimbar Jumat Masjid Talang Pangeran • Format F4 Landscape 2 Kolom & Ekspor</div>
+        </div>
+      </div>
+
+      <div class="editorial-box">
+        <h3>📰 Artikel & Info Kegiatan</h3>
+        <div class="item-row">
+          <h4 onclick="tampilSimulasi('info_kegiatan')">[Info Kegiatan] Jadwal Belajar Kelompok A & B serta Evaluasi Semester</h4>
+          <div class="item-meta">Agenda Resmi MDTA Darul Muttaqien • Klik untuk melihat rincian</div>
+        </div>
+        <div class="item-row">
+          <h4 onclick="tampilSimulasi('artikel_1')">[Artikel] Adab Bermajelis Ilmu Menurut Imam Al-Ghazali</h4>
+          <div class="item-meta">Rubrik Keilmuan & Pendidikan • Klik untuk membaca artikel</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MUTIARA HIKMAH ULAMA -->
+    <div class="ulama-wisdom">
+      <p>“Ilmu itu bukan yang dihafal, melainkan yang memberi manfaat.”</p>
+      <span>— Imam Asy-Syafi'i rahimahullah</span>
+    </div>
+
+  </div>
+<script>
+    var NO_REK_BRI = "003001013416538";
+    var NO_REK_BSI = "7185368879";
+    var NO_DANA = "6282282088679";
+
+    // PENGHUBUNG RESMI KE PUSTAKA YAYASAN
+    var PUSTAKA_YAYASAN_URL = "http://pustaka.darulmuttaqien.my.id/";
+
+    // ENDPOINT DATABASE KHUSUS BLOG YAYASAN (TERPISAH DARI SIM MDTA PEGAWAI & SANTRI)
+    var BLOG_YAYASAN_ENDPOINT = "https://script.google.com/macros/s/AKfycby9rKplYzTW8M4a3kwnRm8JDnGKOOlGGF3a9mFyMoLliVAFjGhdnEfqAJ8XJVelogKW/exec";
+    var PIN_ADMIN_BLOG = "2828";
+
+    var DATA_SANTRI_SIM = [
+      { nis: "2025001", nama: "Muhammad Al-Fatih", ttl: "OKI, 2015-03-12", kelas: "2 MDTA", kelompok: "Kelompok A", ortu: "Hendra Wijaya / Siti Aminah", alamat: "Jl. Mesjid Talang Pangeran RT 01" },
+      { nis: "2026002", nama: "Aisyah Humaira Putri", ttl: "Palembang, 2016-07-19", kelas: "1 MDTA", kelompok: "Kelompok A", ortu: "Rahmat Hidayat / Nurhayati", alamat: "Dusun I Talang Pangeran" },
+      { nis: "2024003", nama: "Zaidan Syahputra", ttl: "OKI, 2014-11-04", kelas: "3 MDTA", kelompok: "Kelompok A", ortu: "Syamsul Bahri / Ratna Dewi", alamat: "Dusun II Talang Pangeran" },
+      { nis: "2025004", nama: "Fatimah Az-Zahra", ttl: "Kayuagung, 2015-09-25", kelas: "2 MDTA", kelompok: "Kelompok A", ortu: "Zulkifli / Mardiana", alamat: "Jl. Mesjid Talang Pangeran No. 14" },
+      { nis: "2025005", nama: "Umar Abdul Aziz", ttl: "OKI, 2015-04-02", kelas: "2 MDTA", kelompok: "Kelompok B", ortu: "Yusrizal / Hayati", alamat: "Jl. Mesjid Talang Pangeran No. 07" },
+      { nis: "2026006", nama: "Hafshah Azzahra", ttl: "Palembang, 2016-10-11", kelas: "1 MDTA", kelompok: "Kelompok B", ortu: "Nofriadi / Desi Ratnasari", alamat: "Dusun I Talang Pangeran Blok A" },
+      { nis: "2024007", nama: "Bilal Al-Habsyi", ttl: "OKI, 2014-08-29", kelas: "3 MDTA", kelompok: "Kelompok B", ortu: "Herman Susilo / Kartini", alamat: "Dusun II Talang Pangeran RT 02" },
+      { nis: "2025008", nama: "Maryam Qanita", ttl: "Kayuagung, 2015-12-14", kelas: "2 MDTA", kelompok: "Kelompok B", ortu: "Safrianto / Rosmawati", alamat: "Talang Pangeran Ulu RT 01" }
+    ];
+
+    var DATA_ALUMNI_SIM = [
+      { nama: "Muhammad Rizky Pratama", tahun: "2025", kelompok: "Kelompok A", lanjut: "Pondok Pesantren Raudhatul Ulum" },
+      { nama: "Nabila Khoirunnisa", tahun: "2025", kelompok: "Kelompok B", lanjut: "MTs Negeri 1 OKI" },
+      { nama: "M. Ridho Al-Hafizh", tahun: "2024", kelompok: "Kelompok A", lanjut: "Pesantren Tenser Indralaya" },
+      { nama: "Annisa Nurul Jannah", tahun: "2024", kelompok: "Kelompok B", lanjut: "MTsN 1 Ogan Komering Ilir" },
+      { nama: "Ahmad Fauzan, S.Pd.I", tahun: "2023", kelompok: "Kelompok A", lanjut: "Pesantren Darul Muttaqien / MAN OKI" },
+      { nama: "Siti Rahmawati", tahun: "2023", kelompok: "Kelompok B", lanjut: "SMPN 1 Teluk Gelam" }
+    ];
+
+    var DATA_KHUTBAH = {
+      khutbah_1: {
+        judul: "Khutbah Jumat: Keutamaan Menjaga Lisan dan Amanah",
+        khatib: "Dewan Asatidz Yayasan Darul Muttaqien",
+        salamArab: "اَلْحَمْدُ لِلّٰهِ الَّذِيْ أَمَرَنَا بِالصِّدْقِ وَالْأَمَانَةِ، وَنَهَانَا عَنِ الْكَذِبِ وَالْخِيَانَةِ. أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيْكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُوْلُهُ.",
+        dalilArab: "يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا ﴿٧٠﴾ يُصْلِحْ لَكُمْ أَعْمَالَكُمْ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ",
+        isiParagraf: [
+          "Ma'asyiral Muslimin rahimakumullah, marilah kita senantiasa meningkatkan ketakwaan kepada Allah SWT dengan menjalankan segala perintah-Nya dan menjauhi seluruh larangan-Nya.",
+          "Salah satu cerminan utama kesempurnaan iman seorang mukmin adalah kemampuannya menjaga lisan dari perkataan dusta, ghibah, adu domba, serta ucapan yang menyakiti hati sesama.",
+          "Rasulullah ﷺ mengingatkan bahwa keselamatan manusia sangat bergantung pada bagaimana ia menjaga lisannya. Setiap kata yang terucap dicatat oleh malaikat dan akan dimintai pertanggungjawaban di hadapan Allah SWT.",
+          "Di samping menjaga lisan, menunaikan amanah dalam keluarga, pekerjaan, maupun pendidikan anak-anak merupakan tiang tegaknya keberkahan masyarakat."
+        ],
+        doaArab: "اَللّٰهُمَّ اغْفِرْ لِلْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ وَالْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ، اَلْأَحْيَاءِ مِنْهُمْ وَالْأَمْوَاتِ، رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ."
+      },
+      khutbah_2: {
+        judul: "Khutbah Jumat: Mendidik Generasi Qur'ani di Era Digital",
+        khatib: "Mimbar Jumat Masjid Talang Pangeran",
+        salamArab: "اَلْحَمْدُ لِلّٰهِ الَّذِيْ عَلَّمَ بِالْقَلَمِ، عَلَّمَ الْإِنْسَانَ مَا لَمْ يَعْلَمْ. وَالصَّلَاةُ وَالسَّلَامُ عَلٰى سَيِّدِنَا مُحَمَّدٍ خَيْرِ الْأَنَامِ، وَعَلٰى آلِهِ وَصَحْبِهِ الْكِرَامِ.",
+        dalilArab: "يَا أَيُّهَا الَّذِينَ آمَنُوا قُوا أَنفُسَكُمْ وَأَهْلِيكُمْ نَارًا وَقُودُهَا النَّاسُ وَالْحِجَارَةُ",
+        isiParagraf: [
+          "Sidang Jumat yang dimuliakan Allah, anak-anak kita adalah amanah agung dari Allah SWT yang kelak akan menjadi penyejuk pandangan mata sekaligus investasi amal jariyah bagi kedua orang tuanya.",
+          "Di tengah derasnya arus informasi digital saat ini, membekali putra-putri kita dengan bacaan Al-Qur'an yang fasih, pemahaman akidah yang lurus, dan akhlakul karimah di madrasah diniyah merupakan benteng paling kokoh.",
+          "Mari kita dukung penuh langkah anak-anak kita dalam menuntut ilmu agama, mendampingi hafalan mereka di rumah, serta memuliakan para guru yang membimbing mereka dengan penuh kesabaran."
+        ],
+        doaArab: "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا. اَللّٰهُمَّ اجْعَلْ أَوْلَادَنَا مِنْ أَهْلِ الْعِلْمِ وَأَهْلِ الْقُرْآنِ."
+      }
+    };
+
+    var KONTEN_PORTAL = {
+      beranda: {
+        tag: "۞ Portal Terintegrasi Yayasan Darul Muttaqien",
+        judul: "Ahlan wa Sahlan di Portal Digital Yayasan Darul Muttaqien",
+        isi: `<p>Portal resmi Yayasan Darul Muttaqien di Desa Talang Pangeran, Kec. Teluk Gelam, OKI. Menyediakan informasi pendidikan madrasah diniyah, khazanah kajian Islam bergaya majalah, mimbar khutbah siap cetak F4, katalog dakwah, media sosial resmi, galeri kegiatan, video, serta halaman khusus donasi & infaq pendidikan.</p>
+              <p>Baca lebih banyak di Pustaka Yayasan: <a href="${PUSTAKA_YAYASAN_URL}" target="_blank" rel="noopener noreferrer" style="color:var(--emerald-deep); font-weight:800;">${PUSTAKA_YAYASAN_URL}</a></p>
+              <div class="beranda-quick-actions">
+                <button type="button" class="btn-quick btn-quick-primary" onclick="tampilSimulasi('donasi')">🤲 Salurkan Donasi & Infaq ↗</button>
+                <a href="${PUSTAKA_YAYASAN_URL}" target="_blank" rel="noopener noreferrer" class="btn-quick btn-quick-soft" style="text-decoration:none;">📚 Baca Lebih Banyak di Pustaka Yayasan ↗</a>
+                <button type="button" class="btn-quick btn-quick-soft" onclick="tampilSimulasi('katalog_dakwah')">📖 Katalog Dakwah</button>
+                <button type="button" class="btn-quick btn-quick-soft" onclick="tampilSimulasi('media_sosial')">🌐 Media Sosial</button>
+                <button type="button" class="btn-quick btn-quick-soft" onclick="tampilSimulasi('galeri')">🖼️ Galeri Kegiatan</button>
+                <button type="button" class="btn-quick btn-quick-soft" onclick="tampilSimulasi('video')">🎥 Arsip Video</button>
+              </div>`
+      },
+
+      kajian_akidah: {
+        tag: "📖 Majalah Kajian Islam — Rubrik Akidah",
+        judul: "Memperkokoh Tauhid: Mengenal Sifat Wajib, Mustahil & Jaiz bagi Allah SWT",
+        isi: `<div class="mag-tab-bar">
+                <button type="button" class="mag-tab-btn active" onclick="tampilSimulasi('kajian_akidah')">Rubrik Akidah</button>
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_fiqh')">Rubrik Fiqh</button>
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_akhlak')">Rubrik Akhlak</button>
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_tarikh')">Rubrik Tarikh</button>
+                <a href="${PUSTAKA_YAYASAN_URL}?tab=kajian" target="_blank" rel="noopener noreferrer" class="mag-tab-btn" style="text-decoration:none;">Baca Lebih Banyak di Pustaka Yayasan ↗</a>
+              </div>
+              <div class="magazine-article">
+                <div class="mag-header">
+                  <div>
+                    <span class="mag-rubrik">Rubrik Ushuluddin & Tauhid • Edisi Majalah Darul Muttaqien</span>
+                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Aqidatul Awam</strong> &amp; <strong>Jauharut Tauhid</strong></div>
+                  </div>
+                  <span class="mag-edition">ISSN Digital • Kajian MDTA</span>
+                </div>
+                <div class="mag-lead">“Mengenal Allah SWT dengan keyakinan yang kokoh merupakan kewajiban pertama bagi setiap mukallaf sekaligus akar dari seluruh amal ibadah.”</div>
+                <div class="mag-columns">
+                  <p>Dalam tradisi keilmuan Ahlussunnah wal Jamaah, pembahasan akidah diawali dengan mengenalkan sifat-sifat kesempurnaan Allah SWT melalui dalil naqli (Al-Qur'an dan Hadits) maupun dalil aqli yang mudah dicerna oleh para penuntut ilmu.</p>
+                  <div class="mag-arabic-box">فَأَوَّلُ وَاجِبٍ عَلَى الْعِبَادِ ۞ مَعْرِفَةُ الْإِلٰهِ بِاسْتِقْصَاءِ</div>
+                  <p>Dua puluh sifat wajib bagi Allah—dimulai dari <em>Wujud</em> (Ada), <em>Qidam</em> (Terdahulu tanpa permulaan), <em>Baqa'</em> (Kekal), hingga <em>Mukhalafatuhu lil Hawaditsi</em> (Berbeda dengan seluruh makhluk)—menanamkan kesadaran bahwa tiada satu pun yang menyerupai-Nya.</p>
+                  <div class="mag-pullquote">“Tauhid yang lurus melahirkan ketenangan jiwa, membebaskan manusia dari ketergantungan kepada selain Allah, dan menumbuhkan keberanian dalam kebenaran.”</div>
+                  <p>Di lingkungan MDTA Darul Muttaqien, santri dibimbing menghafal nazham <em>Aqidatul Awam</em> beserta maknanya agar nilai-nilai keimanan tertanam sejak usia dini dengan penuh kecintaan.</p>
+                </div>
+              </div>`
+      },
+
+      kajian_fiqh: {
+        tag: "📖 Majalah Kajian Islam — Rubrik Fiqh Ibadah",
+        judul: "Fikih Thaharah: Kunci Diterimanya Shalat dan Kesempurnaan Wudhu",
+        isi: `<div class="mag-tab-bar">
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_akidah')">Rubrik Akidah</button>
+                <button type="button" class="mag-tab-btn active" onclick="tampilSimulasi('kajian_fiqh')">Rubrik Fiqh</button>
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_akhlak')">Rubrik Akhlak</button>
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_tarikh')">Rubrik Tarikh</button>
+                <a href="${PUSTAKA_YAYASAN_URL}?tab=kajian" target="_blank" rel="noopener noreferrer" class="mag-tab-btn" style="text-decoration:none;">Baca Lebih Banyak di Pustaka Yayasan ↗</a>
+              </div>
+              <div class="magazine-article">
+                <div class="mag-header">
+                  <div>
+                    <span class="mag-rubrik">Rubrik Fikih & Syariah • Edisi Majalah Darul Muttaqien</span>
+                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Safinatun Najah</strong> &amp; <strong>Fathul Qarib</strong></div>
+                  </div>
+                  <span class="mag-edition">ISSN Digital • Kajian MDTA</span>
+                </div>
+                <div class="mag-lead">“Kesucian lahir dan batin adalah pintu gerbang munajat seorang hamba ketika berdiri menghadap Rabb-nya dalam shalat.”</div>
+                <div class="mag-columns">
+                  <p>Kitab <em>Safinatun Najah</em> karya Syekh Salim bin Sumair Al-Hadhrami menjadi rujukan utama santri dalam memahami tata cara bersuci (thaharah) secara sistematis, mulai dari pembagian macam-macam air hingga enam rukun fardhu wudhu.</p>
+                  <div class="mag-arabic-box">مِفْتَاحُ الصَّلَاةِ الطُّهُورُ، وَتَحْرِيمُهَا التَّكْبِيرُ، وَتَحْلِيلُهَا التَّسْلِيمُ</div>
+                  <p>Setiap rukun wudhu—niat, membasuh wajah, membasuh kedua tangan hingga siku, mengusap sebagian kepala, membasuh kedua kaki hingga mata kaki, serta tertib—dipraktikkan langsung bersama para asatidz.</p>
+                  <div class="mag-pullquote">“Fikih bukan sekadar hafalan hukum, melainkan panduan praktis agar setiap gerakan ibadah sah sesuai tuntunan syariat.”</div>
+                  <p>Dengan pembiasaan praktik wudhu dan shalat berjamaah di madrasah, santri diharapkan mampu menjaga kualitas ibadahnya baik di lingkungan sekolah maupun di rumah.</p>
+                </div>
+              </div>`
+      },
+
+      kajian_akhlak: {
+        tag: "📖 Majalah Kajian Islam — Rubrik Akhlak & Tasawuf",
+        judul: "Adab Penuntut Ilmu: Memuliakan Guru sebagai Kunci Keberkahan",
+        isi: `<div class="mag-tab-bar">
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_akidah')">Rubrik Akidah</button>
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_fiqh')">Rubrik Fiqh</button>
+                <button type="button" class="mag-tab-btn active" onclick="tampilSimulasi('kajian_akhlak')">Rubrik Akhlak</button>
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_tarikh')">Rubrik Tarikh</button>
+                <a href="${PUSTAKA_YAYASAN_URL}?tab=kajian" target="_blank" rel="noopener noreferrer" class="mag-tab-btn" style="text-decoration:none;">Baca Lebih Banyak di Pustaka Yayasan ↗</a>
+              </div>
+              <div class="magazine-article">
+                <div class="mag-header">
+                  <div>
+                    <span class="mag-rubrik">Rubrik Tazkiyatun Nafs • Edisi Majalah Darul Muttaqien</span>
+                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Ta'limul Muta'allim</strong> &amp; <strong>Al-Washaya</strong></div>
+                  </div>
+                  <span class="mag-edition">ISSN Digital • Kajian MDTA</span>
+                </div>
+                <div class="mag-lead">“Ilmu yang bermanfaat tidak diraih semata-mata dengan kecerdasan akal, melainkan melalui ketinggian adab dan ketulusan hati.”</div>
+                <div class="mag-columns">
+                  <p>Imam Az-Zarnuji dalam kitab <em>Ta'limul Muta'allim</em> menegaskan bahwa seorang pelajar tidak akan memperoleh ilmu dan tidak dapat mengambil manfaat darinya kecuali dengan mengagungkan ilmu, ahli ilmu, serta menghormati gurunya.</p>
+                  <div class="mag-arabic-box">تَعَلَّمُوا الْعِلْمَ وَتَعَلَّمُوا لِلْعِلْمِ السَّكِينَةَ وَالْوَقَارَ</div>
+                  <p>Sikap santun kepada guru, duduk tenang saat majelis berlangsung, menjaga kebersihan kitab, serta meminta doa restu orang tua merupakan amalan nyata yang membuka pintu keberkahan ilmu.</p>
+                  <div class="mag-pullquote">“Adab didahulukan sebelum ilmu; sebab dengan adab, ilmu yang sedikit akan tumbuh membawa cahaya manfaat.”</div>
+                  <p>Pembinaan karakter inilah yang senantiasa ditekankan dalam keseharian santri Yayasan Darul Muttaqien.</p>
+                </div>
+              </div>`
+      },
+
+      kajian_tarikh: {
+        tag: "📖 Majalah Kajian Islam — Rubrik Tarikh & Sirah Nabawiyah",
+        judul: "Cahaya Dakwah di Makkah: Keteladanan Kesabaran Rasulullah ﷺ",
+        isi: `<div class="mag-tab-bar">
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_akidah')">Rubrik Akidah</button>
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_fiqh')">Rubrik Fiqh</button>
+                <button type="button" class="mag-tab-btn" onclick="tampilSimulasi('kajian_akhlak')">Rubrik Akhlak</button>
+                <button type="button" class="mag-tab-btn active" onclick="tampilSimulasi('kajian_tarikh')">Rubrik Tarikh</button>
+                <a href="${PUSTAKA_YAYASAN_URL}?tab=kajian" target="_blank" rel="noopener noreferrer" class="mag-tab-btn" style="text-decoration:none;">Baca Lebih Banyak di Pustaka Yayasan ↗</a>
+              </div>
+              <div class="magazine-article">
+                <div class="mag-header">
+                  <div>
+                    <span class="mag-rubrik">Rubrik Sirah & Sejarah Islam • Edisi Majalah Darul Muttaqien</span>
+                    <div style="font-size:0.85rem; color:var(--ink-muted);">Kitab Rujukan: <strong>Khulashah Nurul Yaqin</strong></div>
+                  </div>
+                  <span class="mag-edition">ISSN Digital • Kajian MDTA</span>
+                </div>
+                <div class="mag-lead">“Menelusuri jejak perjuangan Rasulullah ﷺ menghidupkan rasa cinta (mahabbah) dan keteladanan nyata dalam jiwa generasi muda.”</div>
+                <div class="mag-columns">
+                  <p>Melalui kitab <em>Khulashah Nurul Yaqin</em> karya Syekh Umar Abdul Jabbar, para santri diajak mengenal perjalanan hidup Nabi Muhammad ﷺ sejak kelahiran beliau di Makkah, masa pengasuhan, hingga turunnya wahyu pertama di Gua Hira.</p>
+                  <div class="mag-arabic-box">لَقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ</div>
+                  <p>Keteguhan hati Rasulullah ﷺ bersama para sahabat seperti Abu Bakar Ash-Shiddiq, Khadijah Al-Kubra, dan Bilal bin Rabah dalam menghadapi ujian dakwah periode Makkah menjadi pelajaran berharga tentang arti kesabaran dan kejujuran.</p>
+                  <div class="mag-pullquote">“Sejarah bukan sekadar kisah masa lalu, melainkan cermin penuntun langkah umat di masa kini dan masa depan.”</div>
+                  <p>Dengan mengenal sirah para nabi dan sahabat, santri memiliki sosok teladan sejati dalam bersikap jujur, amanah, dan penuh kasih sayang.</p>
+                </div>
+              </div>`
+      },
+
+      khutbah_1: {
+        tag: "🕌 Mimbar Kumpulan Khutbah Jumat (Siap Cetak F4 Landscape 2 Kolom)",
+        judul: DATA_KHUTBAH.khutbah_1.judul,
+        isi: renderKontenKhutbah('khutbah_1')
+      },
+
+      khutbah_2: {
+        tag: "🕌 Mimbar Kumpulan Khutbah Jumat (Siap Cetak F4 Landscape 2 Kolom)",
+        judul: DATA_KHUTBAH.khutbah_2.judul,
+        isi: renderKontenKhutbah('khutbah_2')
+      },
+
+      galeri: {
+        tag: "🖼️ Galeri Foto Kegiatan Yayasan Darul Muttaqien",
+        judul: "Dokumentasi Foto, Tahun Pengambilan & Catatan Kegiatan",
+        isi: `<p>Dokumentasi kegiatan pendidikan dan dakwah Yayasan Darul Muttaqien. Baca lebih banyak di Pustaka Yayasan: <a href="${PUSTAKA_YAYASAN_URL}?tab=galeri" target="_blank" rel="noopener noreferrer" style="color:var(--emerald-deep); font-weight:800;">${PUSTAKA_YAYASAN_URL}?tab=galeri</a></p>
+              <div class="gallery-grid" id="galleryCardsContainer"></div>`
+      },
+
+      katalog_dakwah: {
+        tag: "📚 Katalog Dakwah & Bahan Ajar Yayasan Darul Muttaqien",
+        judul: "Katalog Kitab Rujukan, Modul Madrasah & Materi Dakwah",
+        isi: `<p>Berikut adalah katalog kitab turats, modul pembelajaran santri MDTA, serta panduan dakwah yang dikaji secara berkala di lingkungan Yayasan Darul Muttaqien. Baca lebih banyak di Pustaka Yayasan: <a href="${PUSTAKA_YAYASAN_URL}?tab=katalog" target="_blank" rel="noopener noreferrer" style="color:var(--emerald-deep); font-weight:800;">${PUSTAKA_YAYASAN_URL}?tab=katalog</a></p>
+              <div class="bank-card-grid">
+                <div class="bank-card">
+                  <div class="bank-name">📘 Modul Iqra' & Tahsin Al-Qur'an</div>
+                  <div class="bank-holder">Tingkat Pemula & Lanjutan • Metode Tartil</div>
+                  <p style="font-size:0.84rem; margin-bottom:10px;">Panduan makharijul huruf, hukum tajwid dasar, dan setoran hafalan Juz 'Amma untuk santri Kelompok A & B.</p>
+                  <button type="button" class="btn-copy" onclick="tampilSimulasi('kajian_akidah')">Lihat Edisi Majalah →</button>
+                </div>
+                <div class="bank-card">
+                  <div class="bank-name">📗 Kitab Safinatun Najah & Fathul Qarib</div>
+                  <div class="bank-holder">Bidang Kajian Fiqh Ibadah</div>
+                  <p style="font-size:0.84rem; margin-bottom:10px;">Katalog hukum bersuci (thaharah), tata cara shalat fardhu, puasa, hingga muamalah sehari-hari.</p>
+                  <button type="button" class="btn-copy" onclick="tampilSimulasi('kajian_fiqh')">Lihat Edisi Majalah →</button>
+                </div>
+                <div class="bank-card">
+                  <div class="bank-name">📙 Kitab Aqidatul Awam & Ta'limul Muta'allim</div>
+                  <div class="bank-holder">Bidang Akidah & Pembinaan Adab</div>
+                  <p style="font-size:0.84rem; margin-bottom:10px;">Katalog materi tauhid Ahlussunnah wal Jamaah serta adab penuntut ilmu kepada orang tua dan guru.</p>
+                  <button type="button" class="btn-copy" onclick="tampilSimulasi('kajian_akhlak')">Lihat Edisi Majalah →</button>
+                </div>
+              </div>`
+      },
+
+      media_sosial: {
+        tag: "🌐 Kanal Resmi Media Sosial & Komunikasi Yayasan",
+        judul: "Terhubung dengan Media Sosial Yayasan Darul Muttaqien",
+        isi: `<p>Ikuti perkembangan kegiatan santri, jadwal pengajian rutin, siaran dakwah, dan informasi resmi Yayasan Darul Muttaqien melalui kanal media sosial dan kontak layanan berikut:</p>
+              <div class="bank-card-grid">
+                <div class="bank-card">
+                  <div class="bank-name">📱 WhatsApp Center Yayasan</div>
+                  <div class="bank-number">0853-8227-9767</div>
+                  <div class="bank-holder">Layanan Informasi & Sekretariat Yayasan</div>
+                  <a href="https://wa.me/6285382279767" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 Hubungi via WhatsApp</a>
+                </div>
+                <div class="bank-card">
+                  <div class="bank-name">▶️ YouTube Dakwah & Kegiatan</div>
+                  <div class="bank-holder">@YayasanDarulMuttaqienOKI</div>
+                  <p style="font-size:0.83rem; margin-bottom:10px;">Dokumentasi pengajian bulanan, wisuda santri, dan kajian kitab kuning.</p>
+                  <button type="button" class="btn-copy" onclick="tampilSimulasi('video')">🎥 Buka Galeri Video</button>
+                </div>
+                <div class="bank-card">
+                  <div class="bank-name">📘 Facebook & Instagram Resmi</div>
+                  <div class="bank-holder">Yayasan Darul Muttaqien Talang Pangeran</div>
+                  <p style="font-size:0.83rem; margin-bottom:10px;">Publikasi foto kegiatan harian madrasah, pengumuman libur, dan poster dakwah.</p>
+                  <button type="button" class="btn-copy" onclick="tampilSimulasi('galeri')">🖼️ Buka Galeri Foto</button>
+                </div>
+              </div>`
+      },
+
+      raport_online: {
+        tag: "📊 Portal Santri — Raport Digital / Online (Terhubung Sistem Raport MDTA)",
+        judul: "Cek & Cetak Raport Online Santri MDTA Darul Muttaqien",
+        isi: `<p>Wali santri dapat melihat capaian nilai evaluasi semester, Tahfidz Juz 'Amma, akhlak, serta mencetak lembar raport A4 menggunakan <strong>Nomor Induk Santri (NIS)</strong> yang terhubung langsung dengan <strong>Sistem Raport Digital MDTA</strong>.</p>
+              <div class="receipt-form-box" style="margin-top:10px;">
+                <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px; margin-bottom:12px;">
+                  <h4 style="margin-bottom:0;">🔍 Pencarian Raport Digital Santri</h4>
+                  <button type="button" class="btn-copy" onclick="bukaPanelAdminRaportDenganPin()">⚙️ Buka Panel Admin Raport Digital ↗</button>
+                </div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Nomor Induk Santri (NIS) *</label>
+                    <input type="text" id="inputNisRaportBlog" placeholder="Ketik NIS atau Nama Santri (Contoh: 2025001)" onkeyup="if(event.key==='Enter') tampilkanRaportSantriBlog()" />
+                  </div>
+                  <div class="form-group">
+                    <label>Tahun Pelajaran / Semester *</label>
+                    <select id="selectSemRaportBlog">
+                      <option value="2026/2027 — Ganjil">2026/2027 — Semester Ganjil</option>
+                      <option value="2026/2027 — Genap">2026/2027 — Semester Genap</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="button" class="btn-action-primary" onclick="tampilkanRaportSantriBlog()">📄 Tampilkan Hasil Raport</button>
+                  <button type="button" class="btn-copy" onclick="bukaCetakRaportLengkap()">🖨️ Buka Lembar Cetak A4 Resmi ↗</button>
+                </div>
+                <div id="hasilRaportBlogArea" style="margin-top:16px;"></div>
+              </div>`
+      },
+
+      bayar_spp: {
+        tag: "💳 Portal Santri — Pembayaran SPP Online via DANA",
+        judul: "Layanan Pembayaran SPP Santri MDTA Darul Muttaqien",
+        isi: `<p>Tarif SPP mingguan santri adalah <strong>Rp 10.000 / minggu</strong> (Tagihan <strong>Kelompok A</strong> setiap hari Jumat, dan <strong>Kelompok B</strong> setiap hari Sabtu). Wali santri dapat melakukan pembayaran online melalui dompet digital <strong>DANA</strong> di bawah ini:</p>
+              <div class="dana-box">
+              <div><span class="dana-badge">DOMPET DIGITAL DANA</span><div class="dana-number">62 822-8208-8679</div><div style="font-size:0.82rem; color:#334155;">a.n. Bendahara Madrasah Darul Muttaqien</div></div>
+              <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <button type="button" class="btn-dana-copy" onclick="salinTeks('6282282088679', 'Nomor DANA Bendahara')">📋 Salin No. DANA</button>
+              <a href="https://wa.link/1wqjar" target="_blank" rel="noopener noreferrer" class="btn-action-primary">💬 Konfirmasi SPP ke Bendahara Sekolah via WA</a>
+              </div></div>
+              <p style="margin-top:12px;"><em>Setelah transfer via DANA, silakan klik tombol konfirmasi di atas untuk mengirimkan bukti transfer ke Bendahara Sekolah.</em></p>`
+      },
+
+      donasi: {
+        tag: "🤲 Halaman Khusus Donasi, Infaq & Wakaf Pendidikan",
+        judul: "Mari Salurkan Donasi Terbaik Anda untuk Yayasan Darul Muttaqien",
+        isi: `<div style="background: linear-gradient(135deg, #fef9e7 0%, #fcf3cf 100%); border: 1.5px solid #f9e79f; border-radius: 14px; padding: 22px; text-align: center; margin-bottom: 20px;">
+              <div style="font-family: 'Amiri', serif; font-size: 1.45rem; color: #7d6608; margin-bottom: 8px; line-height: 1.8;">مَثَلُ الَّذِينَ يُنْفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنْبَتَتْ سَبْعَ سَنَابِلَ فِي كُلِّ سُنْبُلَةٍ مِئَةُ حَبَّةٍ ۗ وَاللَّهُ يُضَاعِفُ لِمَنْ يَشَاءُ ۗ وَاللَّهُ وَاسِعٌ عَلِيمٌ</div>
+              <p style="font-style: italic; font-size: 0.93rem; color: #5b4c06; max-width: 820px; margin: 0 auto 6px;">“Perumpamaan orang yang menginfakkan hartanya di jalan Allah seperti sebutir biji yang menumbuhkan tujuh tangkai, pada setiap tangkai ada seratus biji. Allah melipatgandakan bagi siapa yang Dia kehendaki, dan Allah Mahaluas, Maha Mengetahui.” <strong>(QS. Al-Baqarah: 261)</strong></p>
+              </div>
+              <p>Dukung operasional pendidikan santri MDTA, pengadaan kitab suci Al-Qur'an, serta pembangunan sarana prasarana belajar di <strong>Yayasan Darul Muttaqien</strong> (Jl. Mesjid No. 110 Dusun II Desa Talang Pangeran, Kec. Teluk Gelam, OKI, Kode Pos 30673).</p>
+              <div class="bank-card-grid">
+                <div class="bank-card">
+                  <div class="bank-name">🏦 BRI Cabang Kayu Agung</div>
+                  <div class="bank-number">0030-01-013416-53-8</div>
+                  <div class="bank-holder">a.n. Yayasan Darul Muttaqien Talang Pangeran</div>
+                  <button type="button" class="btn-copy" onclick="salinTeks('003001013416538', 'Nomor Rekening BRI')">📋 Salin No. Rek BRI</button>
+                </div>
+                <div class="bank-card">
+                  <div class="bank-name">🏦 Bank Syariah Indonesia (BSI)</div>
+                  <div class="bank-number">7185368879</div>
+                  <div class="bank-holder">a.n. Yayasan Darul Muttaqien Talang Pangeran</div>
+                  <button type="button" class="btn-copy" onclick="salinTeks('7185368879', 'Nomor Rekening BSI')">📋 Salin No. Rek BSI</button>
+                </div>
+              </div>
+              <div class="receipt-form-box">
+                <h4>🧾 Cetak & Kirim Bukti Transfer / Konfirmasi Donasi</h4>
+                <p style="font-size:0.85rem; color:var(--ink-muted); margin-bottom:12px;">Isi data di bawah untuk mencetak struk/bukti konfirmasi atau mengirimkannya langsung via WhatsApp ke pengurus atau bendahara yayasan.</p>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Nama Donatur / Dermawan *</label>
+                    <input type="text" id="rcpt-nama" placeholder="Contoh: H. Abdullah / Hamba Allah" />
+                  </div>
+                  <div class="form-group">
+                    <label>Nominal Donasi (Rp) *</label>
+                    <input type="text" id="rcpt-nominal" placeholder="Contoh: Rp 250.000" />
+                  </div>
+                  <div class="form-group">
+                    <label>Tujuan Penyaluran / Rekening *</label>
+                    <select id="rcpt-tujuan">
+                      <option value="BRI Yayasan Darul Muttaqien">BRI Cabang Kayu Agung (Yayasan)</option>
+                      <option value="BSI Yayasan Darul Muttaqien">Bank Syariah Indonesia / BSI (Yayasan)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Kirim Bukti ke WhatsApp *</label>
+                    <select id="rcpt-wa">
+                      <option value="https://wa.link/elpjgu">WhatsApp Pengurus 1 (https://wa.link/elpjgu)</option>
+                      <option value="https://wa.link/jr2uzv">WhatsApp Pengurus 2 (https://wa.link/jr2uzv)</option>
+                      <option value="https://wa.link/1wqjar">WhatsApp Bendahara Yayasan & Sekolah (https://wa.link/1wqjar)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="button" class="btn-copy" onclick="cetakStrukDonasi()">🖨️ Cetak Bukti Struk</button>
+                  <button type="button" class="btn-wa" onclick="kirimBuktiWa()">💬 Kirim Bukti via WhatsApp</button>
+                </div>
+              </div>`
+      },
+
+      santri_aktif: {
+        tag: "🧑‍🎓 Portal Santri — Data Santri Aktif (Import Portal Pegawai SIM MDTA)",
+        judul: "Direktori Santri Aktif MDTA Darul Muttaqien",
+        isi: `<p>Data pokok santri aktif di bawah ini diimpor langsung dari database <strong>Portal Adm / Pegawai (SIM MDTA Darul Muttaqien)</strong> dan berstatus <em>View-Only</em> untuk publik/wali santri.</p>
+              <div class="directory-toolbar">
+                <div class="search-input-wrap">
+                  <span class="search-icon">🔍</span>
+                  <input type="text" id="searchSantriInput" onkeyup="filterTabelSantri()" placeholder="Cari NIS, Nama Santri, Kelas, Orang Tua, atau Alamat..." />
+                </div>
+                <div class="filter-controls-wrap">
+                  <select id="filterKelompokSantri" onchange="filterTabelSantri()">
+                    <option value="">Semua Kelompok</option>
+                    <option value="Kelompok A">Kelompok A</option>
+                    <option value="Kelompok B">Kelompok B</option>
+                  </select>
+                  <span class="sync-badge" id="statusImportSantri">🔄 Sumber: Database SIM Pegawai</span>
+                  <button type="button" class="btn-import-sim" onclick="sinkronDataPegawai()">↻ Muat Ulang dari Portal Pegawai</button>
+                </div>
+              </div>
+              <div style="overflow-x:auto;">
+                <table class="sim-table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>NIS</th>
+                      <th>Nama Lengkap Santri</th>
+                      <th>Tempat, Tgl Lahir</th>
+                      <th>Kelas</th>
+                      <th>Kelompok</th>
+                      <th>Nama Ayah / Ibu</th>
+                      <th>Alamat</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbodySantriAktif"></tbody>
+                </table>
+              </div>`
+      },
+
+      alumni: {
+        tag: "🎓 Portal Santri — Direktori Alumni Lintas Angkatan",
+        judul: "Arsip Data Alumni MDTA Darul Muttaqien",
+        isi: `<p>Gunakan pilihan dropdown tahun kelulusan atau kolom pencarian di bawah untuk menelusuri data alumni MDTA Darul Muttaqien:</p>
+              <div class="directory-toolbar">
+                <div class="search-input-wrap">
+                  <span class="search-icon">🔍</span>
+                  <input type="text" id="searchAlumniInput" onkeyup="filterTabelAlumni()" placeholder="Cari Nama Alumni, Kelompok Asal, atau Sekolah/Pesantren Lanjutan..." />
+                </div>
+                <div class="filter-controls-wrap">
+                  <select id="filterTahunAlumni" onchange="filterTabelAlumni()">
+                    <option value="ALL">📅 Semua Tahun Lulus</option>
+                    <option value="2025">🏅 Angkatan 2025</option>
+                    <option value="2024">🏅 Angkatan 2024</option>
+                    <option value="2023">🏅 Angkatan 2023</option>
+                  </select>
+                  <span class="sync-badge">📜 Arsip Kelulusan SIM MDTA</span>
+                </div>
+              </div>
+              <div style="overflow-x:auto;">
+                <table class="sim-table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Lengkap Alumni</th>
+                      <th>Tahun Lulus</th>
+                      <th>Kelompok Asal</th>
+                      <th>Lanjut Pesantren / Sekolah</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbodyAlumni"></tbody>
+                </table>
+              </div>`
+      },
+
+      video: {
+        tag: "🎥 Kumpulan Video Resmi Yayasan Darul Muttaqien",
+        judul: "Arsip Video Kegiatan & Kajian Islam",
+        isi: `<p>Saksikan rekaman video kegiatan, tausiyah, serta dokumentasi pembelajaran santri MDTA Darul Muttaqien. Baca lebih banyak di Pustaka Yayasan: <a href="${PUSTAKA_YAYASAN_URL}?tab=video" target="_blank" rel="noopener noreferrer" style="color:var(--emerald-deep); font-weight:800;">${PUSTAKA_YAYASAN_URL}?tab=video</a></p>
+              <div class="video-grid">
+                <div class="video-card">
+                  <div class="video-container">
+                    <div class="video-placeholder">▶ Video Profil & Kegiatan MDTA Darul Muttaqien</div>
+                  </div>
+                  <div class="video-body"><h5>Profil Singkat Madrasah</h5><p>Mengenal lebih dekat lingkungan belajar dan kegiatan santri di Talang Pangeran.</p></div>
+                </div>
+                <div class="video-card">
+                  <div class="video-container">
+                    <div class="video-placeholder">▶ Tausiyah & Kajian Kitab Kuning</div>
+                  </div>
+                  <div class="video-body"><h5>Kajian Kitab Safinatun Najah</h5><p>Pengajian rutin mingguan bersama dewan asatidz.</p></div>
+                </div>
+              </div>`
+      },
+
+      artikel_1: {
+        tag: "📰 Artikel Keilmuan & Pendidikan Islam",
+        judul: "Adab Bermajelis Ilmu Menurut Imam Al-Ghazali",
+        isi: `<p>Dalam kitab <em>Bidayatul Hidayah</em>, Imam Al-Ghazali menguraikan tata krama murid ketika berada di majelis ilmu, di antaranya meluruskan niat dan menyimak penjelasan ustadz.</p>
+              <p>Baca lebih banyak di Pustaka Yayasan: <a href="${PUSTAKA_YAYASAN_URL}?tab=artikel" target="_blank" rel="noopener noreferrer" style="color:var(--emerald-deep); font-weight:800;">${PUSTAKA_YAYASAN_URL}?tab=artikel</a></p>`
+      },
+
+      info_kegiatan: {
+        tag: "📅 Info Kegiatan Resmi Yayasan Darul Muttaqien",
+        judul: "Agenda Pendidikan & Jadwal Kelompok Belajar",
+        isi: `<p>Berikut informasi kegiatan resmi:</p>
+              <ul style="margin-left:20px; margin-bottom:12px;">
+              <li><strong>Kelompok A:</strong> Senin, Rabu, Jumat (Pukul 14.30 WIB).</li>
+              <li><strong>Kelompok B:</strong> Selasa, Kamis, Sabtu (Pukul 14.30 WIB).</li>
+              </ul>`
+      }
+    };
+function renderKontenKhutbah(idKhutbah) {
+      var k = DATA_KHUTBAH[idKhutbah];
+      if (!k) return '';
+      var paragrafHtml = k.isiParagraf.map(function(p) { return '<p>' + p + '</p>'; }).join('');
+      return `
+        <div class="khutbah-toolbar">
+          <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+            <button type="button" class="mag-tab-btn ${idKhutbah === 'khutbah_1' ? 'active' : ''}" onclick="tampilSimulasi('khutbah_1')">Naskah 1: Menjaga Lisan</button>
+            <button type="button" class="mag-tab-btn ${idKhutbah === 'khutbah_2' ? 'active' : ''}" onclick="tampilSimulasi('khutbah_2')">Naskah 2: Generasi Qur'ani</button>
+            <a href="${PUSTAKA_YAYASAN_URL}?tab=khutbah" target="_blank" rel="noopener noreferrer" class="mag-tab-btn" style="text-decoration:none;">Baca Lebih Banyak di Pustaka Yayasan ↗</a>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <button type="button" class="btn-action-primary" onclick="cetakKhutbahF4('${idKhutbah}')">🖨️ Cetak F4 Landscape (2 Kolom • Arab 20pt)</button>
+            <button type="button" class="btn-export-doc" onclick="eksporKhutbahDoc('${idKhutbah}')">📥 Ekspor Naskah (.doc)</button>
+          </div>
+        </div>
+        <div class="khutbah-sheet-preview">
+          <div style="text-align:center; border-bottom:2px solid var(--emerald-deep); padding-bottom:12px; margin-bottom:18px;">
+            <div style="font-size:0.78rem; font-weight:700; color:var(--gold-primary); letter-spacing:1px;">MIMBAR JUMAT YAYASAN DARUL MUTTAQIEN • FORMAT F4 LANDSCAPE 2 KOLOM</div>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.45rem; color:var(--emerald-deep); margin-top:4px;">${k.judul}</h3>
+            <div style="font-size:0.8rem; color:var(--ink-muted);">Oleh: ${k.khatib}</div>
+          </div>
+          <div class="khutbah-2col-body">
+            <div class="khutbah-arab">${k.salamArab}</div>
+            <div class="khutbah-arab">${k.dalilArab}</div>
+            ${paragrafHtml}
+            <div class="khutbah-arab">${k.doaArab}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function cetakKhutbahF4(idKhutbah) {
+      var k = DATA_KHUTBAH[idKhutbah];
+      if (!k) return;
+      var paragrafHtml = k.isiParagraf.map(function(p) { return '<p>' + p + '</p>'; }).join('');
+      var w = window.open('', '_blank', 'width=1050,height=700');
+      if (!w) { alert('Izinkan pop-up browser untuk mencetak naskah khutbah F4 Landscape.'); return; }
+      w.document.write(`<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cetak F4 Landscape - ${k.judul}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page { size: 330mm 215mm; margin: 14mm 16mm; }
+    body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #111827; margin: 0; padding: 0; }
+    .header-cetak { text-align: center; border-bottom: 2px solid #0b3d28; padding-bottom: 8px; margin-bottom: 14px; }
+    .header-cetak h2 { margin: 0 0 4px 0; font-size: 16pt; color: #0b3d28; }
+    .header-cetak .sub { font-size: 9.5pt; color: #4b5563; }
+    .dua-kolom { column-count: 2; column-gap: 14mm; column-rule: 1px solid #9ca3af; text-align: justify; }
+    .dua-kolom p { font-size: 11pt; line-height: 1.65; margin: 0 0 10px 0; }
+    .teks-arab { font-family: 'Amiri', 'Traditional Arabic', serif; font-size: 20pt; line-height: 1.9; text-align: right; direction: rtl; margin: 8px 0 12px 0; color: #000000; break-inside: avoid; }
+  </style>
+</head>
+<body>
+  <div class="header-cetak">
+    <h2>${k.judul}</h2>
+    <div class="sub">Yayasan Darul Muttaqien Talang Pangeran — ${k.khatib}</div>
+  </div>
+  <div class="dua-kolom">
+    <div class="teks-arab">${k.salamArab}</div>
+    <div class="teks-arab">${k.dalilArab}</div>
+    ${paragrafHtml}
+    <div class="teks-arab">${k.doaArab}</div>
+  </div>
+  <scr' + 'ipt>window.onload = function() { window.print(); };<\/script>
+</body>
+</html>`);
+      w.document.close();
+    }
+
+    function eksporKhutbahDoc(idKhutbah) {
+      var k = DATA_KHUTBAH[idKhutbah];
+      if (!k) return;
+      var paragrafHtml = k.isiParagraf.map(function(p) { return '<p style="font-size:11pt; line-height:1.6; text-align:justify;">' + p + '</p>'; }).join('');
+      var docContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>${k.judul}</title>
+        <style>
+          @page Section1 { size: 33.0cm 21.5cm; mso-page-orientation: landscape; margin: 1.5cm; columns: 2; column-gap: 1.2cm; }
+          div.Section1 { page: Section1; }
+          .arab { font-family: 'Traditional Arabic', 'Amiri', serif; font-size: 20pt; text-align: right; direction: rtl; line-height: 1.9; }
+        </style>
+        </head>
+        <body>
+          <div class="Section1">
+            <h2 style="text-align:center; color:#0b3d28;">${k.judul}</h2>
+            <p style="text-align:center; font-size:10pt;">Yayasan Darul Muttaqien Talang Pangeran — ${k.khatib}</p>
+            <hr/>
+            <p class="arab">${k.salamArab}</p>
+            <p class="arab">${k.dalilArab}</p>
+            ${paragrafHtml}
+            <p class="arab">${k.doaArab}</p>
+          </div>
+        </body>
+        </html>`;
+      var blob = new Blob(['\ufeff', docContent], { type: 'application/msword' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = idKhutbah + '_F4_Landscape_2Kolom.doc';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    var DATA_GALERI_FOTO = [
+      {
+        id: "gal_1",
+        judul: "Kegiatan Belajar Mengajar Kelompok A",
+        tahun: "2026",
+        lokasi: "Ruang Kelas Utama MDTA",
+        gradasi: "linear-gradient(135deg, #0b3d28, #13583c)",
+        deskripsi: "Suasana tadarus Al-Qur'an dan setoran hafalan Juz 'Amma santri Kelompok A.",
+        catatanDefault: "Catatan: Santri sangat antusias mengikuti setoran hafalan pagi."
+      },
+      {
+        id: "gal_2",
+        judul: "Praktik Ibadah Thaharah & Shalat",
+        tahun: "2025",
+        lokasi: "Halaman & Masjid Talang Pangeran",
+        gradasi: "linear-gradient(135deg, #13583c, #1e7a54)",
+        deskripsi: "Bimbingan langsung tata cara wudhu yang benar sesuai kitab Safinatun Najah.",
+        catatanDefault: ""
+      },
+      {
+        id: "gal_3",
+        judul: "Pengajian Akbar & Santunan Santri",
+        tahun: "2024",
+        lokasi: "Aula Yayasan Darul Muttaqien",
+        gradasi: "linear-gradient(135deg, #07291b, #0b3d28)",
+        deskripsi: "Majelis taklim bersama wali santri dan tokoh masyarakat Kecamatan Teluk Gelam.",
+        catatanDefault: ""
+      }
+    ];
+
+    function renderGaleriFoto() {
+      var container = document.getElementById('galleryCardsContainer');
+      if (!container) return;
+      container.innerHTML = DATA_GALERI_FOTO.map(function(item) {
+        var savedNote = localStorage.getItem('gal_note_' + item.id);
+        var noteVal = (savedNote !== null) ? savedNote : item.catatanDefault;
+        var imgInner = item.src
+          ? '<img src="' + escapeHtmlBlogger(item.src) + '" alt="' + escapeHtmlBlogger(item.judul) + '" />'
+          : '<div class="gallery-img" style="background: ' + item.gradasi + '; color:#f5dc93;">📸 ' + escapeHtmlBlogger(item.judul) + '</div>';
+        return `
+          <div class="gallery-card">
+            <div class="gallery-img-wrap">
+              ${imgInner}
+              <span class="gallery-year-badge">📅 Tahun ${escapeHtmlBlogger(item.tahun)}</span>
+            </div>
+            <div class="gallery-body">
+              <div class="gallery-meta-row">
+                <span>🗓️ Diambil: ${escapeHtmlBlogger(item.tahun)}</span>
+                <span>•</span>
+                <span>📍 ${escapeHtmlBlogger(item.lokasi || 'Yayasan Darul Muttaqien')}</span>
+              </div>
+              <h5>${escapeHtmlBlogger(item.judul)}</h5>
+              <p class="gal-desc">${escapeHtmlBlogger(item.deskripsi)}</p>
+              <div class="gallery-borderless-note">
+                <textarea rows="2" placeholder="Tulis catatan singkat foto ini di sini (tanpa garis tepi)..." oninput="simpanCatatanGaleri('${item.id}', this.value)">${escapeHtmlBlogger(noteVal)}</textarea>
+                <div class="note-status-bar">
+                  <span>✍️ Catatan Foto</span>
+                  <span id="status_${item.id}">Tersimpan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function simpanCatatanGaleri(id, teks) {
+      localStorage.setItem('gal_note_' + id, teks);
+      var st = document.getElementById('status_' + id);
+      if (st) st.textContent = '✓ Tersimpan otomatis';
+    }
+
+    function filterTabelSantri() {
+      var tbody = document.getElementById('tbodySantriAktif');
+      if (!tbody) return;
+      var q = (document.getElementById('searchSantriInput') ? document.getElementById('searchSantriInput').value : '').toLowerCase();
+      var kel = document.getElementById('filterKelompokSantri') ? document.getElementById('filterKelompokSantri').value : '';
+
+      var filtered = DATA_SANTRI_SIM.filter(function(item) {
+        var matchKel = !kel || item.kelompok === kel;
+        var gabungan = (item.nis + ' ' + item.nama + ' ' + item.ttl + ' ' + item.kelas + ' ' + item.kelompok + ' ' + item.ortu + ' ' + item.alamat).toLowerCase();
+        var matchQ = !q || gabungan.indexOf(q) !== -1;
+        return matchKel && matchQ;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:18px; color:#5a6660;">Tidak ada data santri yang cocok dengan kata kunci pencarian.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(function(s, idx) {
+        return '<tr>' +
+          '<td>' + (idx + 1) + '</td>' +
+          '<td><strong>' + s.nis + '</strong></td>' +
+          '<td><strong>' + s.nama + '</strong></td>' +
+          '<td>' + s.ttl + '</td>' +
+          '<td>' + s.kelas + '</td>' +
+          '<td>' + s.kelompok + '</td>' +
+          '<td>' + s.ortu + '</td>' +
+          '<td>' + s.alamat + '</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    function sinkronDataPegawai() {
+      var badge = document.getElementById('statusImportSantri');
+      if (badge) {
+        badge.innerHTML = '⏳ Mengambil data dari SIM Pegawai...';
+        setTimeout(function() {
+          filterTabelSantri();
+          badge.innerHTML = '✅ Tersinkron (' + DATA_SANTRI_SIM.length + ' Santri dari Portal Pegawai)';
+        }, 450);
+      }
+    }
+
+    function filterTabelAlumni() {
+      var tbody = document.getElementById('tbodyAlumni');
+      if (!tbody) return;
+      var q = (document.getElementById('searchAlumniInput') ? document.getElementById('searchAlumniInput').value : '').toLowerCase();
+      var thn = document.getElementById('filterTahunAlumni') ? document.getElementById('filterTahunAlumni').value : 'ALL';
+
+      var filtered = DATA_ALUMNI_SIM.filter(function(item) {
+        var matchThn = (thn === 'ALL') || (item.tahun === thn);
+        var gabungan = (item.nama + ' ' + item.tahun + ' ' + item.kelompok + ' ' + item.lanjut).toLowerCase();
+        var matchQ = !q || gabungan.indexOf(q) !== -1;
+        return matchThn && matchQ;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:18px; color:#5a6660;">Tidak ada data alumni yang sesuai dengan filter tahun atau pencarian.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(function(a, idx) {
+        return '<tr>' +
+          '<td>' + (idx + 1) + '</td>' +
+          '<td><strong>' + a.nama + '</strong></td>' +
+          '<td><span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:6px; font-weight:700;">' + a.tahun + '</span></td>' +
+          '<td>' + a.kelompok + '</td>' +
+          '<td>' + a.lanjut + '</td>' +
+        '</tr>';
+      }).join('');
+    }
+
+    function togglePortalSantri(e) {
+      if (e) e.stopPropagation();
+      var box = document.getElementById('portalSantriBox');
+      if (box) box.classList.toggle('open');
+    }
+
+    function toggleSubAlumni(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      var liAlumni = document.getElementById('liAlumniSub');
+      if (liAlumni) liAlumni.classList.toggle('sub-open');
+    }
+
+    function pilihMenuSantri(kode) {
+      tampilSimulasi(kode);
+      tutupSemuaDropdownSantri();
+    }
+
+    function bukaAlumniTahun(tahun) {
+      tampilSimulasi('alumni');
+      var sel = document.getElementById('filterTahunAlumni');
+      if (sel) sel.value = tahun;
+      filterTabelAlumni();
+      tutupSemuaDropdownSantri();
+    }
+
+    function tutupSemuaDropdownSantri() {
+      var box = document.getElementById('portalSantriBox');
+      if (box) box.classList.remove('open');
+      var liAlumni = document.getElementById('liAlumniSub');
+      if (liAlumni) liAlumni.classList.remove('sub-open');
+    }
+
+    document.addEventListener('click', function(e) {
+      var box = document.getElementById('portalSantriBox');
+      if (box && !box.contains(e.target)) {
+        tutupSemuaDropdownSantri();
+      }
+    });
+
+    function tampilSimulasi(kode) {
+      var data = KONTEN_PORTAL[kode] || KONTEN_PORTAL.beranda;
+      var panel = document.getElementById('ruang-aktif');
+      if (!panel) return;
+      panel.innerHTML = '<span class="viewer-tag">' + data.tag + '</span>' +
+                        '<h2>' + data.judul + '</h2>' +
+                        '<div class="viewer-body">' + data.isi + '</div>';
+
+      if (kode === 'santri_aktif') {
+        filterTabelSantri();
+      } else if (kode === 'alumni') {
+        filterTabelAlumni();
+      } else if (kode === 'galeri') {
+        renderGaleriFoto();
+      }
+
+      var allNavLinks = document.querySelectorAll('ul.nav-menu > li > a');
+      allNavLinks.forEach(function(l) { l.classList.remove('active-menu-item'); });
+
+      var btnPortalSantri = document.getElementById('btnPortalSantri');
+      if (btnPortalSantri) btnPortalSantri.classList.remove('active-portal');
+
+      var santriMenus = ['santri_aktif', 'alumni', 'raport_online', 'bayar_spp'];
+      if (santriMenus.indexOf(kode) !== -1) {
+        if (btnPortalSantri) btnPortalSantri.classList.add('active-portal');
+      } else {
+        var navMap = {
+          beranda: 'nav-beranda',
+          katalog_dakwah: 'nav-katalog_dakwah',
+          media_sosial: 'nav-media_sosial',
+          galeri: 'nav-galeri',
+          video: 'nav-video',
+          donasi: 'nav-donasi',
+          kajian_akidah: 'nav-kajian',
+          kajian_fiqh: 'nav-kajian',
+          kajian_akhlak: 'nav-kajian',
+          kajian_tarikh: 'nav-kajian',
+          khutbah_1: 'nav-khutbah',
+          khutbah_2: 'nav-khutbah',
+          artikel_1: 'nav-artikel',
+          info_kegiatan: 'nav-artikel'
+        };
+        var navElId = navMap[kode];
+        if (navElId) {
+          var navEl = document.getElementById(navElId);
+          if (navEl) navEl.classList.add('active-menu-item');
+        }
+      }
+
+      var navList = document.getElementById('navList');
+      if (navList) navList.classList.remove('open');
+
+      if (kode !== 'beranda') {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function salinTeks(teks, label) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(teks).then(function() {
+          alert(label + " (" + teks + ") berhasil disalin!");
+        }).catch(function() {
+          prompt("Salin teks berikut:", teks);
+        });
+      } else {
+        prompt("Salin teks berikut:", teks);
+      }
+    }
+
+    function cetakStrukDonasi() {
+      var nama = document.getElementById('rcpt-nama').value.trim() || 'Hamba Allah';
+      var nominal = document.getElementById('rcpt-nominal').value.trim() || 'Rp 100.000';
+      var tujuan = document.getElementById('rcpt-tujuan').value;
+      var tgl = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+
+      var w = window.open('', '_blank', 'width=700,height=600');
+      if (!w) { alert('Izinkan pop-up browser untuk mencetak bukti transfer.'); return; }
+      w.document.write(`<!DOCTYPE html><html><head><title>Struk Konfirmasi Donasi Yayasan Darul Muttaqien</title><style>
+        body{font-family: Arial, sans-serif; padding: 20px; color: #1d2622;}
+        .receipt{max-width: 500px; margin: auto; border: 2px dashed #0b3d28; padding: 24px; border-radius: 12px; background: #fff;}
+        h3{text-align: center; color: #0b3d28; margin-bottom: 4px;}
+        .sub{text-align: center; font-size: 11px; color: #5a6660; margin-bottom: 16px;}
+        .line{border-bottom: 1px solid #cbd5e1; margin: 12px 0;}
+        .row{display: flex; justify-content: space-between; margin: 8px 0; font-size: 13px;}
+        .footer{text-align: center; margin-top: 24px; font-size: 11px; color: #5a6660;}
+      </style></head><body>
+        <div class="receipt">
+          <h3>YAYASAN DARUL MUTTAQIEN</h3>
+          <div class="sub">Jl. Mesjid No. 110 Talang Pangeran, Teluk Gelam, OKI (Kode Pos 30673)</div>
+          <div class="line"></div>
+          <h4 style="text-align:center; color:#c59b27; margin-bottom:12px;">STRUK BUKTI KONFIRMASI DONASI / INFAQ</h4>
+          <div class="row"><span>Tanggal:</span> <b>${tgl}</b></div>
+          <div class="row"><span>Nama Donatur:</span> <b>${nama}</b></div>
+          <div class="row"><span>Nominal Donasi:</span> <b style="color:#0b3d28;">${nominal}</b></div>
+          <div class="row"><span>Tujuan Penyaluran:</span> <b>${tujuan}</b></div>
+          <div class="line"></div>
+          <p style="font-size:12px; text-align:center; font-style:italic;">“Jazakumullah khairan katsiran atas donasi dan infaq terbaik Anda. Semoga menjadi amal jariyah.”</p>
+          <div class="footer">Pengurus & Bendahara Yayasan Darul Muttaqien</div>
+        </div>
+        <scr' + 'ipt>window.onload = function() { window.print(); };<\/scr' + 'ipt>
+      </body></html>`);
+      w.document.close();
+    }
+
+    function kirimBuktiWa() {
+      var nama = document.getElementById('rcpt-nama').value.trim() || 'Hamba Allah';
+      var nominal = document.getElementById('rcpt-nominal').value.trim() || '-';
+      var tujuan = document.getElementById('rcpt-tujuan').value;
+      var waUrl = document.getElementById('rcpt-wa').value;
+
+      kirimKeBlogEndpoint({
+        action: 'addKonfirmasi',
+        jenis: 'Donasi / Infaq Blog',
+        nama: nama,
+        hp: '-',
+        detail: nominal + ' (' + tujuan + ')',
+        catatan: 'Dikirim dari Portal Induk darulmuttaqien.my.id'
+      });
+
+      var text = encodeURIComponent(`Assalamu'alaikum Warahmatullahi Wabarakatuh,
+
+Saya ingin konfirmasi pengiriman donasi / infaq untuk Yayasan Darul Muttaqien:
+- Nama: ${nama}
+- Nominal: ${nominal}
+- Tujuan: ${tujuan}
+
+Berikut saya lampirkan bukti transfernya. Jazakumullah khairan katsiran.`);
+      window.open(waUrl + '?text=' + text, '_blank');
+    }
+
+    var RAPORT_STORAGE_KEY = 'darul_muttaqien_raport_v1';
+    var MAPEL_LABEL_RAPORT = [
+      { kode: 'quran', nama: "Al-Qur'an" },
+      { kode: 'hadis', nama: "Hadis" },
+      { kode: 'aqidah', nama: "Aqidah" },
+      { kode: 'akhlak', nama: "Akhlak" },
+      { kode: 'fiqih', nama: "Fiqih" },
+      { kode: 'ski', nama: "Tarikh / SKI" },
+      { kode: 'bahasa_arab', nama: "Bahasa Arab" },
+      { kode: 'mulok', nama: "Praktik Ibadah" }
+    ];
+
+    function ambilDatabaseRaportTerpadu() {
+      try {
+        var raw = localStorage.getItem(RAPORT_STORAGE_KEY);
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (parsed && Array.isArray(parsed.santri) && parsed.santri.length > 0) return parsed;
+        }
+      } catch (e) {}
+      return null;
+    }
+
+    var PRIMARY_SIM_MDTA_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz_Yakj_9--6BjTVn1tknHbcux_RqESUv_sI_VvBho8B4rAD2UNUNbF0J0y__-MtimbmA/exec';
+    var DEFAULT_ENDPOINT_BLOG = PRIMARY_SIM_MDTA_ENDPOINT;
+
+    function normalisasiSantriDariSimEndpoint(rawList) {
+      if (!Array.isArray(rawList)) return [];
+      return rawList.map(function(r, idx) {
+        var isSheetRow = !!(r && (r.Nama_Lengkap || r.ID_Santri || r.Tempat_Lahir || r.Tanggal_Lahir));
+        if (isSheetRow) {
+          var kelRaw = String(r.Kelompok || 'A').trim();
+          var kelNorm = kelRaw.toUpperCase().indexOf('B') !== -1 ? 'Kelompok B' : 'Kelompok A';
+          var ayah = String(r.Nama_Ayah || '').trim();
+          var ibu = String(r.Nama_Ibu || '').trim();
+          return {
+            id: r.ID_Santri || ('S-DRV-' + (idx + 1)),
+            nis: String(r.NIK || r.ID_Santri || (idx + 1)).trim(),
+            nama: String(r.Nama_Lengkap || '-').trim(),
+            tempatLahir: String(r.Tempat_Lahir || 'OKI').trim(),
+            tglLahir: String(r.Tanggal_Lahir || '-').trim(),
+            kelas: String(r.Kelas || '1 MDTA').trim(),
+            kelompok: kelNorm,
+            ayah: ayah || '-',
+            ibu: ibu || '-',
+            alamat: String(r.Alamat || '-').trim(),
+            status: String(r.Status_Aktif || 'Aktif').trim()
+          };
+        }
+        return {
+          id: r.id || ('S-LOC-' + (idx + 1)),
+          nis: String(r.nis || '-').trim(),
+          nama: String(r.nama || r.nama_lengkap || '-').trim(),
+          tempatLahir: String(r.tempatLahir || r.tempat_lahir || 'OKI').trim(),
+          tglLahir: String(r.tglLahir || r.tanggal_lahir || '-').trim(),
+          kelas: String(r.kelas || '1 MDTA').trim(),
+          kelompok: String(r.kelompok || 'Kelompok A').trim(),
+          ayah: String(r.ayah || r.nama_ayah || '-').trim(),
+          ibu: String(r.ibu || r.nama_ibu || '-').trim(),
+          alamat: String(r.alamat || '-').trim(),
+          status: String(r.status || 'Aktif').trim()
+        };
+      });
+    }
+
+    function sinkronDariEndpointAppsScriptBlog(callback) {
+      var customUrl = localStorage.getItem('sim_mdta_endpoint_url');
+      var endpointUrl = (customUrl && customUrl.indexOf('AKfycbwvN2RLdEEX') === -1) ? customUrl : DEFAULT_ENDPOINT_BLOG;
+      if (!endpointUrl) {
+        if (typeof callback === 'function') callback();
+        return;
+      }
+      var fetchUrl = endpointUrl + (endpointUrl.indexOf('?') === -1 ? '?action=getAll' : '&action=getAll') + '&_t=' + Date.now();
+      fetch(fetchUrl)
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data && Array.isArray(data.santri) && data.santri.length > 0) {
+            var normalized = normalisasiSantriDariSimEndpoint(data.santri);
+            var existingRaw = localStorage.getItem(RAPORT_STORAGE_KEY);
+            var existingObj = {};
+            try { existingObj = existingRaw ? JSON.parse(existingRaw) : {}; } catch (e) {}
+            var payload = Object.assign({}, existingObj, {
+              lembaga: Object.assign({}, existingObj.lembaga || {}, data.lembaga || {}),
+              santri: normalized
+            });
+            localStorage.setItem(RAPORT_STORAGE_KEY, JSON.stringify(payload));
+            sinkronSantriDariRaportKeBlog();
+          }
+          if (typeof callback === 'function') callback();
+        })
+        .catch(function() {
+          if (typeof callback === 'function') callback();
+        });
+    }
+
+    function sinkronSantriDariRaportKeBlog() {
+      var db = ambilDatabaseRaportTerpadu();
+      if (db && Array.isArray(db.santri) && db.santri.length > 0) {
+        DATA_SANTRI_SIM = db.santri.map(function(s) {
+          var ttlGabung = (s.tempatLahir && s.tempatLahir !== '-' ? s.tempatLahir + ', ' : '') + (s.tglLahir || '-');
+          var ortuGabung = (s.ayah || '-') + (s.ibu && s.ibu !== '-' ? ' / ' + s.ibu : '');
+          return {
+            nis: s.nis || '-',
+            nama: s.nama || '-',
+            ttl: ttlGabung,
+            kelas: s.kelas || '1 MDTA',
+            kelompok: s.kelompok || 'Kelompok A',
+            ortu: ortuGabung,
+            alamat: s.alamat || '-'
+          };
+        });
+      }
+    }
+
+    function tampilkanRaportSantriBlog() {
+      var area = document.getElementById('hasilRaportBlogArea');
+      if (!area) return;
+      var nisInput = (document.getElementById('inputNisRaportBlog') ? document.getElementById('inputNisRaportBlog').value : '').trim();
+      var semDipilih = document.getElementById('selectSemRaportBlog') ? document.getElementById('selectSemRaportBlog').value : '2026/2027 — Ganjil';
+
+      if (!nisInput) {
+        area.innerHTML = '<div style="padding:12px; background:#fef2f2; color:#991b1b; border:1px solid #fecaca; border-radius:8px; font-size:0.86rem;">Silakan masukkan Nomor Induk Santri (NIS) terlebih dahulu (Contoh: <strong>2025001</strong>).</div>';
+        return;
+      }
+
+      var db = ambilDatabaseRaportTerpadu();
+      var santriData = null;
+      var lembagaData = { nama: 'MDTA DARUL MUTTAQIEN', tahun: '2026/2027', semester: 'Ganjil', mulok: 'Praktik Ibadah' };
+
+      if (db) {
+        lembagaData = Object.assign(lembagaData, db.lembaga || {});
+        var qLower = nisInput.toLowerCase();
+        santriData = db.santri.find(function(item) {
+          return String(item.nis).trim().toLowerCase() === qLower || String(item.nama).toLowerCase().indexOf(qLower) !== -1;
+        });
+      } else {
+        var qLowerFb = nisInput.toLowerCase();
+        var fallback = DATA_SANTRI_SIM.find(function(item) {
+          return String(item.nis).trim().toLowerCase() === qLowerFb || String(item.nama).toLowerCase().indexOf(qLowerFb) !== -1;
+        });
+        if (fallback) {
+          santriData = {
+            nis: fallback.nis,
+            nama: fallback.nama,
+            kelas: fallback.kelas,
+            kelompok: fallback.kelompok,
+            ayah: fallback.ortu,
+            alamat: fallback.alamat,
+            nilai: {
+              quran: { kkm: 75, angka: 90, predikat: 'A', deskripsi: 'Sangat baik dalam membaca dan menghafal Al-Qur\'an.' },
+              hadis: { kkm: 75, angka: 88, predikat: 'B', deskripsi: 'Baik dalam menghafal hadis pilihan.' },
+              aqidah: { kkm: 75, angka: 90, predikat: 'A', deskripsi: 'Sangat baik dalam memahami kitab Aqidatul Awam.' },
+              akhlak: { kkm: 75, angka: 92, predikat: 'A', deskripsi: 'Menerapkan adab penuntut ilmu dengan sangat baik.' },
+              fiqih: { kkm: 75, angka: 87, predikat: 'B', deskripsi: 'Baik dalam memahami tata cara thaharah dan shalat.' },
+              ski: { kkm: 75, angka: 86, predikat: 'B', deskripsi: 'Baik dalam mengenal sirah nabawiyah.' },
+              bahasa_arab: { kkm: 75, angka: 85, predikat: 'B', deskripsi: 'Baik dalam menguasai kosakata dasar bahasa Arab.' },
+              mulok: { kkm: 75, angka: 90, predikat: 'A', deskripsi: 'Sangat baik dalam praktik wudhu dan shalat berjamaah.' }
+            },
+            tahfidz: { capaian: "Juz 'Amma", predikat: 'Sangat Baik' }
+          };
+        }
+      }
+
+      if (!santriData) {
+        area.innerHTML = '<div style="padding:14px; background:#fffbeb; color:#92400e; border:1px solid #fde68a; border-radius:10px; font-size:0.86rem;">Data santri dengan NIS <strong>' + nisInput + '</strong> belum ditemukan.</div>';
+        return;
+      }
+
+      var total = 0, count = 0;
+      var rowsHtml = MAPEL_LABEL_RAPORT.map(function(m, i) {
+        var label = m.kode === 'mulok' ? (lembagaData.mulok || m.nama) : m.nama;
+        var nObj = (santriData.nilai && santriData.nilai[m.kode]) ? santriData.nilai[m.kode] : { kkm: 75, angka: '-', predikat: '-', deskripsi: '-' };
+        var num = parseFloat(nObj.angka);
+        if (!isNaN(num)) { total += num; count++; }
+        return '<tr><td style="text-align:center;">' + (i + 1) + '</td><td><strong>' + label + '</strong></td><td style="text-align:center;">' + (nObj.kkm || 75) + '</td><td style="text-align:center; font-weight:700; color:#0b3d28;">' + (nObj.angka !== '' ? nObj.angka : '-') + '</td><td style="text-align:center; font-weight:700;">' + (nObj.predikat || '-') + '</td><td style="font-size:0.8rem;">' + (nObj.deskripsi || '-') + '</td></tr>';
+      }).join('');
+
+      var rata = count > 0 ? (total / count).toFixed(2) : '-';
+      area.innerHTML = `<div style="background:#ffffff; border:1.5px solid #0b3d28; border-radius:12px; padding:18px; margin-top:8px;">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; border-bottom:2px solid #c59b27; padding-bottom:10px; margin-bottom:14px;">
+          <div>
+            <div style="font-size:0.76rem; font-weight:800; color:#c59b27; text-transform:uppercase;">${lembagaData.nama} • ${semDipilih}</div>
+            <h4 style="font-size:1.2rem; color:#0b3d28; margin:2px 0;">${santriData.nama} (NIS: ${santriData.nis})</h4>
+          </div>
+          <a href="sistem_raport_digital_mdta-v9.html?nis=${encodeURIComponent(santriData.nis)}" class="btn-action-primary">🖨️ Cetak Raport A4 Lengkap ↗</a>
+        </div>
+        <div style="overflow-x:auto;"><table class="sim-table"><thead><tr><th>No</th><th>Mata Pelajaran</th><th>KKM</th><th>Nilai</th><th>Predikat</th><th>Deskripsi</th></tr></thead><tbody>${rowsHtml}<tr style="background:#eef8f3; font-weight:700;"><td colspan="3" style="text-align:right;">Rata-Rata:</td><td style="text-align:center;">${rata}</td><td colspan="2">Tahfidz: ${santriData.tahfidz ? santriData.tahfidz.capaian : '-'}</td></tr></tbody></table></div>
+      </div>`;
+    }
+
+    function bukaCetakRaportLengkap() {
+      var nisInput = (document.getElementById('inputNisRaportBlog') ? document.getElementById('inputNisRaportBlog').value : '').trim();
+      var url = nisInput ? ('sistem_raport_digital_mdta-v9.html?nis=' + encodeURIComponent(nisInput)) : 'sistem_raport_digital_mdta-v9.html?tab=tab-cetak';
+      window.location.href = url;
+    }
+
+    var PIN_ADMIN_RAPORT = "2828";
+    function bukaPanelAdminRaportDenganPin() {
+      var modal = document.getElementById('modal-pin-admin-raport');
+      var inp = document.getElementById('inputPinAdminRaport');
+      var err = document.getElementById('pesanErrorPinAdminRaport');
+      if (err) { err.style.display = 'none'; err.textContent = ''; }
+      if (modal) modal.style.display = 'flex';
+      if (inp) { inp.value = ''; setTimeout(function() { inp.focus(); }, 60); }
+    }
+    function tutupModalPinAdminRaport() {
+      var modal = document.getElementById('modal-pin-admin-raport');
+      if (modal) modal.style.display = 'none';
+    }
+    function verifikasiPinAdminRaport() {
+      var inp = document.getElementById('inputPinAdminRaport');
+      var err = document.getElementById('pesanErrorPinAdminRaport');
+      var nilaiPin = inp ? inp.value.trim() : '';
+      if (!nilaiPin) {
+        if (err) { err.textContent = 'Silakan masukkan PIN admin terlebih dahulu.'; err.style.display = 'block'; }
+        return;
+      }
+      if (nilaiPin !== PIN_ADMIN_RAPORT) {
+        if (err) { err.textContent = 'PIN admin salah. Silakan coba lagi.'; err.style.display = 'block'; }
+        if (inp) { inp.value = ''; inp.focus(); }
+        return;
+      }
+      tutupModalPinAdminRaport();
+      window.location.href = 'sistem_raport_digital_mdta-v9.html';
+    }
+
+    var BLOGGER_STORAGE_KEY = 'ydm_blogger_posts_v2';
+    var BLOGGER_ADMIN_SESSION_KEY = 'ydm_blogger_admin_unlocked';
+    var BLOGGER_ACTIVE_LABEL = 'Semua';
+
+    var POSTINGAN_BLOGGER_AWAL = [
+      {
+        id: 'post-khutbah-lisan',
+        sheetName: 'Khutbah',
+        judul: 'Khutbah Jumat: Menjaga Lisan dan Menunaikan Amanah',
+        label: 'Khutbah',
+        penulis: 'Dewan Asatidz Darul Muttaqien',
+        tanggal: '2026-11-20',
+        arab: 'يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا',
+        lampiran: '',
+        isi: 'Ma\'asyiral Muslimin rahimakumullah, marilah kita senantiasa meningkatkan ketakwaan kepada Allah SWT dengan menjalankan segala perintah-Nya dan menjauhi seluruh larangan-Nya.\n\nSalah satu cerminan utama kesempurnaan iman seorang mukmin adalah menjaga lisan dari perkataan yang sia-sia, dusta, maupun ghibah, serta menunaikan setiap amanah pendidikan dan keluarga dengan penuh tanggung jawab.'
+      },
+      {
+        id: 'post-kajian-aqidah',
+        sheetName: 'Kajian',
+        judul: 'Kajian Kitab: Pondasi Tauhid dalam Kehidupan Sehari-hari',
+        label: 'Kajian',
+        penulis: 'Ust. Ahmad Fauzi',
+        tanggal: '2026-11-18',
+        arab: 'فَأَوَّلُ وَاجِبٍ عَلَى الْعِبَادِ ۞ مَعْرِفَةُ الْإِلٰهِ بِاسْتِقْصَاءِ',
+        lampiran: '',
+        isi: 'Pembahasan kajian rutin yang menyoroti pentingnya mengenal sifat-sifat kesempurnaan Allah SWT sebagai landasan sikap tawakal, syukur, dan istiqamah dalam beribadah.'
+      },
+      {
+        id: 'post-artikel-adab',
+        sheetName: 'Berita_Artikel',
+        judul: 'Adab Penuntut Ilmu: Memuliakan Guru & Kitab Pelajaran',
+        label: 'Artikel',
+        penulis: 'Redaksi Yayasan Darul Muttaqien',
+        tanggal: '2026-11-15',
+        arab: '',
+        lampiran: '',
+        isi: 'Keberkahan ilmu sering kali hadir melalui adab yang terjaga di majelis ilmu: datang tepat waktu, menyimak penjelasan guru dengan saksama, serta menjaga adab terhadap kitab dan sesama penuntut ilmu.'
+      }
+    ];
+
+    function kirimKeBlogEndpoint(payload, onDone) {
+      if (!BLOG_YAYASAN_ENDPOINT) {
+        if (typeof onDone === 'function') onDone(null);
+        return;
+      }
+      fetch(BLOG_YAYASAN_ENDPOINT, {
+        method: 'POST',
+        redirect: 'follow',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(res) { if (typeof onDone === 'function') onDone(res); })
+      .catch(function() { if (typeof onDone === 'function') onDone(null); });
+    }
+
+    function pemetaanSheetDariLabel(label) {
+      var l = String(label || '').trim().toLowerCase();
+      if (l === 'khutbah') return 'Khutbah';
+      if (l === 'kajian') return 'Kajian';
+      if (l === 'galeri foto' || l === 'galeri') return 'Galeri_Blog';
+      return 'Berita_Artikel';
+    }
+
+    function sinkronBlogDariCloud(showAlert) {
+      var statusEl = document.getElementById('statusCloudBlogYayasan');
+      if (!BLOG_YAYASAN_ENDPOINT) return;
+      if (statusEl) statusEl.textContent = '⏳ Menyinkronkan Database Blog Yayasan...';
+
+      fetch(BLOG_YAYASAN_ENDPOINT + (BLOG_YAYASAN_ENDPOINT.indexOf('?') === -1 ? '?action=getAll' : '&action=getAll') + '&_t=' + Date.now(), {
+        method: 'GET',
+        redirect: 'follow'
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (!res || res.status !== 'success') {
+          if (statusEl) statusEl.textContent = '⚠️ Respon Database Blog tidak valid';
+          return;
+        }
+        var hasilCloud = [];
+        (res.khutbah || []).forEach(function(row, idx) {
+          hasilCloud.push({
+            id: String(row.ID || ('khu-cld-' + idx)),
+            sheetName: 'Khutbah',
+            judul: String(row.Judul || 'Khutbah Jumat'),
+            label: 'Khutbah',
+            penulis: String(row.Khatib || 'Dewan Asatidz'),
+            tanggal: String(row.Tanggal || ''),
+            arab: String(row.Dalil_Utama || ''),
+            lampiran: String(row.Link_Naskah || ''),
+            isi: String(row.Poin_Utama || '')
+          });
+        });
+        (res.kajian || []).forEach(function(row, idx) {
+          hasilCloud.push({
+            id: String(row.ID || ('kaj-cld-' + idx)),
+            sheetName: 'Kajian',
+            judul: String(row.Judul || 'Kajian Rutin'),
+            label: 'Kajian',
+            penulis: String(row.Pemateri || 'Dewan Asatidz'),
+            tanggal: String(row.Tanggal || ''),
+            arab: '',
+            lampiran: String(row.Link_Materi || row.Link_Video || ''),
+            isi: String(row.Ringkasan || '') + (row.Waktu_Tempat ? ('\n\nWaktu & Tempat: ' + row.Waktu_Tempat) : '')
+          });
+        });
+        (res.berita || []).forEach(function(row, idx) {
+          var kat = String(row.Kategori || 'Artikel');
+          hasilCloud.push({
+            id: String(row.ID || ('art-cld-' + idx)),
+            sheetName: 'Berita_Artikel',
+            judul: String(row.Judul || 'Artikel Yayasan'),
+            label: kat.toLowerCase().indexOf('kajian') !== -1 ? 'Kajian' : 'Artikel',
+            penulis: String(row.Penulis || 'Redaksi Yayasan'),
+            tanggal: String(row.Tanggal || ''),
+            arab: '',
+            lampiran: String(row.Link_Dokumen || row.Link_Gambar || ''),
+            isi: String(row.Isi_Lengkap || row.Ringkasan || '')
+          });
+        });
+        if (hasilCloud.length > 0) {
+          simpanDaftarPostinganBlogger(hasilCloud);
+        }
+        renderPostinganBlogger();
+        if (statusEl) {
+          statusEl.textContent = '✅ Database Blog Terhubung (' + hasilCloud.length + ' Postingan Cloud)';
+        }
+        if (showAlert) {
+          alert('Sinkronisasi Database Blog Yayasan berhasil! Total ' + hasilCloud.length + ' postingan di Google Sheets.');
+        }
+      })
+      .catch(function() {
+        if (statusEl) statusEl.textContent = '⚠️ Mode Lokal (Cek akses Deploy Apps Script Blog)';
+      });
+    }
+
+    function isAdminBlogTerbuka() {
+      try { return sessionStorage.getItem(BLOGGER_ADMIN_SESSION_KEY) === 'true'; } catch (e) { return document.body.classList.contains('blogger-admin-unlocked'); }
+    }
+    function terapkanStatusAdminBlog() {
+      var unlocked = isAdminBlogTerbuka();
+      var btnLock = document.getElementById('btnBukaModeAdminBlog');
+      if (unlocked) {
+        document.body.classList.add('blogger-admin-unlocked');
+        if (btnLock) btnLock.style.display = 'none';
+      } else {
+        document.body.classList.remove('blogger-admin-unlocked');
+        if (btnLock) btnLock.style.display = 'inline-flex';
+      }
+    }
+    function bukaModalPinBlog() {
+      var modal = document.getElementById('modal-pin-admin-blog');
+      var inp = document.getElementById('inputPinAdminBlog');
+      var err = document.getElementById('pesanErrorPinAdminBlog');
+      if (err) { err.style.display = 'none'; err.textContent = ''; }
+      if (modal) modal.style.display = 'flex';
+      if (inp) { inp.value = ''; setTimeout(function() { inp.focus(); }, 60); }
+    }
+    function tutupModalPinBlog() {
+      var modal = document.getElementById('modal-pin-admin-blog');
+      if (modal) modal.style.display = 'none';
+    }
+    function verifikasiPinAdminBlog() {
+      var inp = document.getElementById('inputPinAdminBlog');
+      var err = document.getElementById('pesanErrorPinAdminBlog');
+      var nilaiPin = inp ? inp.value.trim() : '';
+      if (!nilaiPin) {
+        if (err) { err.textContent = 'Silakan masukkan PIN admin terlebih dahulu.'; err.style.display = 'block'; }
+        return;
+      }
+      if (nilaiPin !== PIN_ADMIN_BLOG) {
+        if (err) { err.textContent = 'PIN admin salah. Silakan coba lagi.'; err.style.display = 'block'; }
+        if (inp) { inp.value = ''; inp.focus(); }
+        return;
+      }
+      try { sessionStorage.setItem(BLOGGER_ADMIN_SESSION_KEY, 'true'); } catch (e) {}
+      tutupModalPinBlog();
+      terapkanStatusAdminBlog();
+      renderPostinganBlogger();
+    }
+    function kunciModeAdminBlog() {
+      try { sessionStorage.removeItem(BLOGGER_ADMIN_SESSION_KEY); } catch (e) {}
+      terapkanStatusAdminBlog();
+      renderPostinganBlogger();
+    }
+    function ambilPostinganBlogger() {
+      try {
+        var raw = localStorage.getItem(BLOGGER_STORAGE_KEY);
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) return parsed;
+        }
+      } catch (e) {}
+      return POSTINGAN_BLOGGER_AWAL.slice();
+    }
+    function simpanDaftarPostinganBlogger(list) {
+      try { localStorage.setItem(BLOGGER_STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
+    }
+    function escapeHtmlBlogger(str) {
+      return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    function formatParagrafBlogger(teks) {
+      var bersih = String(teks || '').replace(/\r\n/g, '\n').trim();
+      if (!bersih) return '<p><em>Belum ada isi tulisan.</em></p>';
+      return bersih.split(/\n\s*\n/).map(function(b) {
+        var trimmed = b.trim();
+        if (trimmed.indexOf('### ') === 0) return '<h4 style="font-family:\'Cormorant Garamond\',serif; font-size:1.25rem; color:var(--emerald-deep); margin:12px 0 6px;">' + escapeHtmlBlogger(trimmed.slice(4)) + '</h4>';
+        if (trimmed.indexOf('> ') === 0) return '<blockquote style="border-left:3px solid var(--gold-primary); padding-left:12px; margin:10px 0; font-style:italic; color:var(--emerald-deep);">' + escapeHtmlBlogger(trimmed.slice(2)) + '</blockquote>';
+        return '<p style="margin-bottom:10px;">' + escapeHtmlBlogger(trimmed).replace(/\n/g, '<br>') + '</p>';
+      }).join('');
+    }
+    function filterPostinganBlogger(label, btnEl) {
+      BLOGGER_ACTIVE_LABEL = label || 'Semua';
+      document.querySelectorAll('#bloggerFilterBar .blogger-pill').forEach(function(p) { p.classList.remove('active'); });
+      if (btnEl) btnEl.classList.add('active');
+      renderPostinganBlogger();
+    }
+    function renderPostinganBlogger() {
+      var grid = document.getElementById('daftarPostinganBlogger');
+      if (!grid) return;
+      var semua = ambilPostinganBlogger();
+      var tersaring = (BLOGGER_ACTIVE_LABEL === 'Semua') ? semua : semua.filter(function(item) { return (item.label || 'Artikel') === BLOGGER_ACTIVE_LABEL; });
+      if (tersaring.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1; padding:16px; background:#faf9f5; border-radius:10px; font-size:0.86rem; color:var(--ink-muted);">Belum ada postingan pada label <strong>' + escapeHtmlBlogger(BLOGGER_ACTIVE_LABEL) + '</strong>. <a href="' + PUSTAKA_YAYASAN_URL + '" target="_blank" rel="noopener noreferrer" style="color:var(--emerald-deep); font-weight:700;">Baca lebih banyak di Pustaka Yayasan (' + PUSTAKA_YAYASAN_URL + ') ↗</a></div>';
+        return;
+      }
+      grid.innerHTML = tersaring.map(function(post) {
+        var ringkasanPolos = String(post.isi || '').replace(/\n+/g, ' ').trim();
+        var cuplikan = ringkasanPolos.length > 135 ? ringkasanPolos.slice(0, 135) + '...' : ringkasanPolos;
+        var tabPustaka = (post.label || '').toLowerCase() === 'khutbah' ? 'khutbah' : ((post.label || '').toLowerCase() === 'kajian' ? 'kajian' : 'artikel');
+        return `<div class="blogger-post-card">
+          <div>
+            <span class="blogger-post-label">&#127991;&#65039; ${escapeHtmlBlogger(post.label || 'Artikel')}</span>
+            <div class="blogger-post-title">${escapeHtmlBlogger(post.judul)}</div>
+            <div class="blogger-post-meta">&#128467;&#65039; ${escapeHtmlBlogger(post.tanggal || '-')} &bull; &#9997;&#65039; ${escapeHtmlBlogger(post.penulis || 'Pengurus Yayasan')}</div>
+            <div class="blogger-post-excerpt">${escapeHtmlBlogger(cuplikan)}</div>
+          </div>
+          <div class="blogger-post-actions">
+            <button type="button" class="btn-smooth" onclick="bukaBacaBlogger('${escapeHtmlBlogger(post.id)}')">Baca Lengkap &rarr;</button>
+            <a href="${PUSTAKA_YAYASAN_URL}?tab=${tabPustaka}" target="_blank" rel="noopener noreferrer" class="btn-smooth" style="text-decoration:none; font-size:0.75rem;">Pustaka Yayasan ↗</a>
+            <button type="button" class="blogger-rich-btn blogger-admin-only" onclick="bukaEditorBlogger('${escapeHtmlBlogger(post.id)}')">&#9998; Edit</button>
+            <button type="button" class="blogger-rich-btn blogger-admin-only" style="color:#b91c1c;" onclick="hapusPostinganBlogger('${escapeHtmlBlogger(post.id)}')">&#128465; Hapus</button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+    function bukaEditorBlogger(idEdit) {
+      if (!isAdminBlogTerbuka()) { bukaModalPinBlog(); return; }
+      var modal = document.getElementById('modalEditorBlogger');
+      var idEl = document.getElementById('bloggerEditId');
+      var jInput = document.getElementById('bloggerJudulInput');
+      var lInput = document.getElementById('bloggerLabelInput');
+      var pInput = document.getElementById('bloggerPenulisInput');
+      var tInput = document.getElementById('bloggerTanggalInput');
+      var lampInput = document.getElementById('bloggerLampiranInput');
+      var arabInput = document.getElementById('bloggerArabInput');
+      var isiInput = document.getElementById('bloggerIsiInput');
+      if (idEdit) {
+        var target = ambilPostinganBlogger().find(function(x) { return x.id === idEdit; });
+        if (target) {
+          if (idEl) idEl.value = target.id;
+          if (jInput) jInput.value = target.judul || '';
+          if (lInput) lInput.value = target.label || 'Artikel';
+          if (pInput) pInput.value = target.penulis || '';
+          if (tInput) tInput.value = target.tanggal || new Date().toISOString().slice(0, 10);
+          if (lampInput) lampInput.value = target.lampiran || '';
+          if (arabInput) arabInput.value = target.arab || '';
+          if (isiInput) isiInput.value = target.isi || '';
+        }
+      } else {
+        if (idEl) idEl.value = '';
+        if (jInput) jInput.value = '';
+        if (lInput) lInput.value = BLOGGER_ACTIVE_LABEL !== 'Semua' ? BLOGGER_ACTIVE_LABEL : 'Khutbah';
+        if (pInput) pInput.value = 'Yayasan Darul Muttaqien';
+        if (tInput) tInput.value = new Date().toISOString().slice(0, 10);
+        if (lampInput) lampInput.value = '';
+        if (arabInput) arabInput.value = '';
+        if (isiInput) isiInput.value = '';
+      }
+      if (modal) modal.style.display = 'flex';
+    }
+    function tutupEditorBlogger() {
+      var modal = document.getElementById('modalEditorBlogger');
+      if (modal) modal.style.display = 'none';
+    }
+    function sisipkanFormatBlogger(jenis) {
+      var ta = document.getElementById('bloggerIsiInput');
+      if (!ta) return;
+      var tambahan = jenis === 'subjudul' ? '\n\n### Subjudul Bagian\n' : (jenis === 'poin' ? '\n- Poin pertama\n- Poin kedua\n' : '\n\n> Kutipan hikmah atau ringkasan penting.\n');
+      ta.value = (ta.value || '') + tambahan;
+      ta.focus();
+    }
+    function bersihkanSpasiWordBlogger() {
+      var ta = document.getElementById('bloggerIsiInput');
+      if (!ta) return;
+      ta.value = String(ta.value || '').replace(/\u00A0/g, ' ').replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
+    }
+    function simpanPostinganBlogger() {
+      if (!isAdminBlogTerbuka()) { alert('Akses ditolak. Silakan buka Mode Admin Blog terlebih dahulu.'); return; }
+      var idEl = document.getElementById('bloggerEditId');
+      var jInput = document.getElementById('bloggerJudulInput');
+      var lInput = document.getElementById('bloggerLabelInput');
+      var pInput = document.getElementById('bloggerPenulisInput');
+      var tInput = document.getElementById('bloggerTanggalInput');
+      var lampInput = document.getElementById('bloggerLampiranInput');
+      var arabInput = document.getElementById('bloggerArabInput');
+      var isiInput = document.getElementById('bloggerIsiInput');
+      var judul = jInput ? jInput.value.trim() : '';
+      var isi = isiInput ? isiInput.value.trim() : '';
+      if (!judul || !isi) { alert('Silakan isi Judul Postingan dan Isi Tulisan terlebih dahulu.'); return; }
+
+      var labelVal = lInput ? lInput.value : 'Artikel';
+      var sheetTarget = pemetaanSheetDariLabel(labelVal);
+      var finalId = (idEl && idEl.value.trim()) ? idEl.value.trim() : ('blog-' + Date.now());
+      var penulisVal = pInput ? (pInput.value.trim() || 'Yayasan Darul Muttaqien') : 'Yayasan Darul Muttaqien';
+      var tanggalVal = tInput ? (tInput.value || new Date().toISOString().slice(0, 10)) : new Date().toISOString().slice(0, 10);
+      var lampiranVal = lampInput ? lampInput.value.trim() : '';
+      var arabVal = arabInput ? arabInput.value.trim() : '';
+
+      var payloadItem = { id: finalId, sheetName: sheetTarget, judul: judul, label: labelVal, penulis: penulisVal, tanggal: tanggalVal, lampiran: lampiranVal, arab: arabVal, isi: isi };
+      var daftar = ambilPostinganBlogger();
+      var idxExist = daftar.findIndex(function(x) { return x.id === finalId; });
+      if (idxExist !== -1) daftar[idxExist] = payloadItem;
+      else daftar.unshift(payloadItem);
+      simpanDaftarPostinganBlogger(daftar);
+      tutupEditorBlogger();
+      renderPostinganBlogger();
+
+      var apiPayload = {
+        pin: PIN_ADMIN_BLOG, id: finalId, tanggal: tanggalVal, judul: judul, penulis: penulisVal, khatib: penulisVal, pemateri: penulisVal,
+        kategori: labelVal, jenis: labelVal === 'Khutbah' ? 'Khutbah Jumat' : labelVal, ringkasan: isi.slice(0, 180),
+        isiLengkap: isi, poinUtama: isi, dalilUtama: arabVal, linkNaskah: lampiranVal, linkMateri: lampiranVal, linkDokumen: lampiranVal,
+        linkAsli: lampiranVal, keterangan: isi.slice(0, 180), status: 'Publish',
+        action: sheetTarget === 'Khutbah' ? 'saveKhutbah' : (sheetTarget === 'Kajian' ? 'saveKajian' : (sheetTarget === 'Galeri_Blog' ? 'saveGaleriBlog' : 'saveBeritaArtikel'))
+      };
+      kirimKeBlogEndpoint(apiPayload, function(res) {
+        if (res && res.status === 'success') sinkronBlogDariCloud(false);
+      });
+    }
+    function hapusPostinganBlogger(idPost) {
+      if (!isAdminBlogTerbuka()) { bukaModalPinBlog(); return; }
+      if (!confirm('Hapus postingan ini dari blog dan database Google Sheets?')) return;
+      var daftar = ambilPostinganBlogger();
+      var target = daftar.find(function(x) { return x.id === idPost; });
+      var sheetName = (target && target.sheetName) ? target.sheetName : 'Berita_Artikel';
+      simpanDaftarPostinganBlogger(daftar.filter(function(x) { return x.id !== idPost; }));
+      renderPostinganBlogger();
+      kirimKeBlogEndpoint({ action: 'deleteRow', pin: PIN_ADMIN_BLOG, sheetName: sheetName, id: idPost });
+    }
+    function bukaBacaBlogger(idPost) {
+      var post = ambilPostinganBlogger().find(function(x) { return x.id === idPost; });
+      if (!post) return;
+      var modal = document.getElementById('modalBacaBlogger');
+      document.getElementById('bacaBloggerLabel').textContent = '🏷️ ' + (post.label || 'Artikel');
+      document.getElementById('bacaBloggerJudul').textContent = post.judul || '';
+      document.getElementById('bacaBloggerMeta').textContent = '🗓️ ' + (post.tanggal || '-') + ' • ✍️ ' + (post.penulis || 'Yayasan Darul Muttaqien');
+      var arab = document.getElementById('bacaBloggerArab');
+      if (post.arab) { arab.textContent = post.arab; arab.style.display = 'block'; } else { arab.style.display = 'none'; }
+      document.getElementById('bacaBloggerIsi').innerHTML = formatParagrafBlogger(post.isi || '');
+      var lampWrap = document.getElementById('bacaBloggerLampiranWrap');
+      var lampLink = document.getElementById('bacaBloggerLampiranLink');
+      if (post.lampiran) { lampLink.href = post.lampiran; lampWrap.style.display = 'block'; } else { lampWrap.style.display = 'none'; }
+      if (modal) modal.style.display = 'flex';
+    }
+    function tutupBacaBlogger() {
+      var modal = document.getElementById('modalBacaBlogger');
+      if (modal) modal.style.display = 'none';
+    }
+    function eksporDataBloggerJson() {
+      if (!isAdminBlogTerbuka()) { bukaModalPinBlog(); return; }
+      var blob = new Blob([JSON.stringify(ambilPostinganBlogger(), null, 2)], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'postingan_blog_yayasan_darul_muttaqien.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+    function imporDataBloggerJson(ev) {
+      if (!isAdminBlogTerbuka()) { bukaModalPinBlog(); return; }
+      var file = ev && ev.target && ev.target.files && ev.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          var parsed = JSON.parse(e.target.result);
+          if (!Array.isArray(parsed)) throw new Error('Format harus berupa array postingan.');
+          simpanDaftarPostinganBlogger(parsed);
+          renderPostinganBlogger();
+          alert('Data postingan blog berhasil diimpor (' + parsed.length + ' postingan).');
+        } catch (err) { alert('Gagal mengimpor file JSON: ' + err.message); }
+      };
+      reader.readAsText(file);
+      ev.target.value = '';
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      sinkronSantriDariRaportKeBlog();
+      var params = new URLSearchParams(window.location.search);
+      var viewParam = params.get('view');
+      if (viewParam && KONTEN_PORTAL[viewParam]) {
+        tampilSimulasi(viewParam);
+      } else {
+        tampilSimulasi('beranda');
+      }
+      sinkronDariEndpointAppsScriptBlog(function() {
+        if (document.getElementById('tbodySantriAktif')) filterTabelSantri();
+        if (document.getElementById('inputNisRaportBlog') && document.getElementById('inputNisRaportBlog').value.trim()) {
+          tampilkanRaportSantriBlog();
+        }
+      });
+      terapkanStatusAdminBlog();
+      renderPostinganBlogger();
+      sinkronBlogDariCloud(false);
+    });
+  </script>
+
+  <!-- MODAL VERIFIKASI PIN ADMIN BLOG -->
+  <div id="modal-pin-admin-blog" onclick="if(event.target===this) tutupModalPinBlog()" style="display:none; position:fixed; inset:0; background:rgba(7,41,27,0.65); z-index:999; align-items:center; justify-content:center; padding:16px;">
+    <div style="background:#ffffff; border-radius:16px; border-top:4px solid #c59b27; max-width:410px; width:100%; padding:22px 24px; box-shadow:0 20px 40px rgba(0,0,0,0.28); font-family:'Plus Jakarta Sans',sans-serif;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <h4 style="margin:0; font-size:1.1rem; font-weight:800; color:#0b3d28;">&#128272; Verifikasi PIN Admin Blog</h4>
+        <button type="button" onclick="tutupModalPinBlog()" style="background:none; border:none; font-size:1.2rem; font-weight:700; color:#64748b; cursor:pointer; padding:2px 6px;">&#10005;</button>
+      </div>
+      <p style="font-size:0.83rem; color:#5a6660; margin-bottom:14px; line-height:1.5;">Masukkan PIN admin yayasan untuk membuka mode kelola postingan (Tulis, Edit, Hapus &amp; Impor).</p>
+      <div style="margin-bottom:10px;">
+        <label for="inputPinAdminBlog" style="display:block; font-size:0.8rem; font-weight:700; color:#0b3d28; margin-bottom:5px;">PIN Admin</label>
+        <input type="password" id="inputPinAdminBlog" placeholder="Masukkan PIN admin..." onkeydown="if(event.key==='Enter'){ event.preventDefault(); verifikasiPinAdminBlog(); }" style="width:100%; padding:10px 12px; border:1.5px solid #cbd5e1; border-radius:9px; font-size:0.95rem; font-weight:700; letter-spacing:2px; outline:none;" />
+      </div>
+      <div id="pesanErrorPinAdminBlog" style="display:none; font-size:0.78rem; color:#b91c1c; background:#fef2f2; border:1px solid #fecaca; padding:7px 10px; border-radius:8px; margin-bottom:12px; font-weight:600;"></div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
+        <button type="button" onclick="tutupModalPinBlog()" style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:8px 14px; border-radius:8px; font-size:0.82rem; font-weight:700; cursor:pointer;">Batal</button>
+        <button type="button" onclick="verifikasiPinAdminBlog()" style="background:#0b3d28; color:#f5dc93; border:none; padding:8px 16px; border-radius:8px; font-size:0.82rem; font-weight:700; cursor:pointer;">Buka Mode Admin &#8599;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL EDITOR POSTINGAN GAYA BLOGGER -->
+  <div class="blogger-editor-modal" id="modalEditorBlogger" onclick="if(event.target===this) tutupEditorBlogger()">
+    <div class="blogger-editor-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #e5e7eb; padding-bottom:10px;">
+        <div>
+          <h3 id="judulModalBlogger" style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--emerald-deep); margin:0;">&#9999;&#65039; Tulis Postingan Baru (Gaya Blogger)</h3>
+          <div style="font-size:0.78rem; color:var(--ink-muted);">Tersimpan ke database khusus blog yayasan serta terhubung ke Pustaka Yayasan (http://pustaka.darulmuttaqien.my.id/).</div>
+        </div>
+        <button type="button" onclick="tutupEditorBlogger()" style="background:none; border:none; font-size:1.25rem; font-weight:700; color:#64748b; cursor:pointer;">&#10005;</button>
+      </div>
+      <input type="hidden" id="bloggerEditId" value="" />
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Judul Postingan / Naskah *</label>
+          <input type="text" id="bloggerJudulInput" placeholder="Contoh: Khutbah Jumat: Menjaga Lisan &amp; Amanah" />
+        </div>
+        <div class="form-group">
+          <label>Label / Kategori *</label>
+          <select id="bloggerLabelInput">
+            <option value="Khutbah">Khutbah</option>
+            <option value="Kajian">Kajian</option>
+            <option value="Galeri Foto">Galeri Foto</option>
+            <option value="Artikel">Artikel</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Penulis / Khatib / Pemateri</label>
+          <input type="text" id="bloggerPenulisInput" placeholder="Contoh: Dewan Asatidz Darul Muttaqien" />
+        </div>
+        <div class="form-group">
+          <label>Tanggal</label>
+          <input type="date" id="bloggerTanggalInput" />
+        </div>
+      </div>
+      <div class="form-grid" style="margin-top:4px;">
+        <div class="form-group">
+          <label>Link Foto / Lampiran Dokumen (Opsional)</label>
+          <input type="text" id="bloggerLampiranInput" placeholder="https://... (link foto atau file Word/PDF di Google Drive)" />
+        </div>
+        <div class="form-group">
+          <label>Teks Arab / Dalil Utama (Opsional)</label>
+          <input type="text" id="bloggerArabInput" placeholder="Contoh: إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ" style="font-family:'Amiri',serif; font-size:1.05rem; text-align:right;" />
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:8px;">
+        <label>Isi Tulisan / Naskah Khutbah atau Kajian *</label>
+        <div class="blogger-rich-toolbar">
+          <button type="button" class="blogger-rich-btn" onclick="sisipkanFormatBlogger('subjudul')">+ Subjudul</button>
+          <button type="button" class="blogger-rich-btn" onclick="sisipkanFormatBlogger('poin')">&#8226; Poin Daftar</button>
+          <button type="button" class="blogger-rich-btn" onclick="sisipkanFormatBlogger('kutipan')">&ldquo;Kutipan&rdquo;</button>
+          <button type="button" class="blogger-rich-btn" onclick="bersihkanSpasiWordBlogger()">&#129529; Rapikan Paste Word</button>
+        </div>
+        <textarea id="bloggerIsiInput" class="blogger-editor-textarea" placeholder="Ketik atau tempel (Ctrl+V) isi naskah khutbah, kajian, atau artikel dari Microsoft Word di sini..."></textarea>
+      </div>
+      <div class="form-actions" style="justify-content:flex-end; margin-top:16px;">
+        <button type="button" class="btn-smooth" onclick="tutupEditorBlogger()">Batal</button>
+        <button type="button" class="btn-action-primary" onclick="simpanPostinganBlogger()">&#128640; Terbitkan Postingan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL BACA POSTINGAN LENGKAP GAYA BLOGGER + PENGHUBUNG PUSTAKA YAYASAN -->
+  <div class="blogger-editor-modal" id="modalBacaBlogger" onclick="if(event.target===this) tutupBacaBlogger()">
+    <div class="blogger-editor-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; border-bottom:2px solid var(--emerald-deep); padding-bottom:10px; margin-bottom:14px;">
+        <div>
+          <span class="blogger-post-label" id="bacaBloggerLabel">Label</span>
+          <h3 id="bacaBloggerJudul" style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--emerald-deep); margin:2px 0 4px;">Judul</h3>
+          <div id="bacaBloggerMeta" style="font-size:0.8rem; color:var(--ink-muted);">Meta</div>
+        </div>
+        <button type="button" onclick="tutupBacaBlogger()" style="background:none; border:none; font-size:1.25rem; font-weight:700; color:#64748b; cursor:pointer;">&#10005;</button>
+      </div>
+      <div id="bacaBloggerArab" style="display:none; font-family:'Amiri',serif; font-size:1.5rem; text-align:right; direction:rtl; background:#f8fbf9; border-right:3px solid var(--gold-primary); padding:10px 14px; border-radius:8px; margin-bottom:14px; color:var(--emerald-deep);"></div>
+      <div id="bacaBloggerIsi" style="font-size:0.94rem; line-height:1.75; color:var(--ink-dark);"></div>
+      <div id="bacaBloggerLampiranWrap" style="display:none; margin-top:14px; padding-top:12px; border-top:1px dashed #cbd5e1;">
+        <a id="bacaBloggerLampiranLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-copy" style="text-decoration:none;">&#128206; Buka Lampiran / Foto / Dokumen &#8599;</a>
+      </div>
+      <div style="margin-top:14px; padding:10px 14px; background:#f4f8f6; border-radius:10px; font-size:0.84rem; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px;">
+        <span>Baca lebih banyak di Pustaka Yayasan: <b>http://pustaka.darulmuttaqien.my.id/</b></span>
+        <a href="http://pustaka.darulmuttaqien.my.id/" target="_blank" rel="noopener noreferrer" class="btn-copy" style="text-decoration:none;">Buka Pustaka Yayasan ↗</a>
+      </div>
+      <div style="display:flex; justify-content:flex-end; margin-top:16px;">
+        <button type="button" class="btn-action-primary" onclick="tutupBacaBlogger()">Tutup Halaman Baca</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL VERIFIKASI PIN PANEL ADMIN RAPORT DIGITAL -->
+  <div id="modal-pin-admin-raport" onclick="if(event.target===this) tutupModalPinAdminRaport()" style="display:none; position:fixed; inset:0; background:rgba(7,41,27,0.65); z-index:999; align-items:center; justify-content:center; padding:16px;">
+    <div style="background:#ffffff; border-radius:16px; border-top:4px solid #c59b27; max-width:410px; width:100%; padding:22px 24px; box-shadow:0 20px 40px rgba(0,0,0,0.28); font-family:'Plus Jakarta Sans',sans-serif;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <h4 style="margin:0; font-size:1.1rem; font-weight:800; color:#0b3d28;">🔐 Verifikasi PIN Admin Raport</h4>
+        <button type="button" onclick="tutupModalPinAdminRaport()" style="background:none; border:none; font-size:1.2rem; font-weight:700; color:#64748b; cursor:pointer; padding:2px 6px;">✕</button>
+      </div>
+      <p style="font-size:0.83rem; color:#5a6660; margin-bottom:14px; line-height:1.5;">Masukkan PIN admin untuk membuka <strong>Panel Admin Raport Digital</strong>.</p>
+      <div style="margin-bottom:10px;">
+        <label for="inputPinAdminRaport" style="display:block; font-size:0.8rem; font-weight:700; color:#0b3d28; margin-bottom:5px;">PIN Admin</label>
+        <input type="password" id="inputPinAdminRaport" placeholder="Masukkan PIN admin..." onkeydown="if(event.key==='Enter'){ event.preventDefault(); verifikasiPinAdminRaport(); }" style="width:100%; padding:10px 12px; border:1.5px solid #cbd5e1; border-radius:9px; font-size:0.95rem; font-weight:700; letter-spacing:2px; outline:none;" />
+      </div>
+      <div id="pesanErrorPinAdminRaport" style="display:none; font-size:0.78rem; color:#b91c1c; background:#fef2f2; border:1px solid #fecaca; padding:7px 10px; border-radius:8px; margin-bottom:12px; font-weight:600;"></div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
+        <button type="button" onclick="tutupModalPinAdminRaport()" style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:8px 14px; border-radius:8px; font-size:0.82rem; font-weight:700; cursor:pointer;">Batal</button>
+        <button type="button" onclick="verifikasiPinAdminRaport()" style="background:#0b3d28; color:#f5dc93; border:none; padding:8px 16px; border-radius:8px; font-size:0.82rem; font-weight:700; cursor:pointer;">Masuk Panel ↗</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
